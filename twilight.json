@@ -1031,6 +1031,16 @@
                     "maxLength": 30
                 }
             ]
+        },
+        {
+            "key": "879e0c51-ec75-4e75-a282-dc7a9eaab5e1",
+            "title": {
+                "en": "pbuner_2",
+                "ar": "pbuner2"
+            },
+            "icon": "sicon-store",
+            "path": "home.pbuner_2",
+            "fields": []
         }
     ],
     "support_url": "https://example.com",
