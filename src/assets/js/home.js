@@ -35,23 +35,67 @@ class Home extends BasePage {
         this._fp5Last  = 1;
         this._fp5Grid  = null;
 
+        // Inject a hidden salla-products-list to piggyback on its fetching;
+        // if our custom fetch below also succeeds we use that instead.
+        this._injectDataList(section);
+
         const { products, lastPage } = await this._fetchFP5Page(1);
 
-        if (!products.length) { section.remove(); return; }
+        if (!products.length) {
+            // If SDK/REST both failed, wait up to 4 s for the web component event
+            const fallback = await this._waitForListEvent(4000);
+            if (!fallback.length) { section.remove(); return; }
+            this._renderFP5(section, fallback, 1);
+            return;
+        }
 
+        this._renderFP5(section, products, lastPage);
+    }
+
+    _renderFP5(section, products, lastPage) {
         this._fp5Last = lastPage;
         section.classList.remove('fp5-auto-loading');
         section.innerHTML = this._buildFP5Shell(this._fp5Title);
         this._fp5Grid = section.querySelector('.fp5-grid');
         this._fp5Grid.insertAdjacentHTML('beforeend', products.map(p => this._buildCard(p)).join(''));
 
-        if (lastPage > 1) {
-            const btn = section.querySelector('.fp5-load-more');
-            btn && btn.addEventListener('click', () => this._loadNextPage());
-        } else {
-            const btn = section.querySelector('.fp5-load-more');
-            btn && btn.remove();
+        const btn = section.querySelector('.fp5-load-more');
+        if (lastPage > 1 && btn) {
+            btn.addEventListener('click', () => this._loadNextPage());
+        } else if (btn) {
+            btn.remove();
         }
+    }
+
+    _injectDataList(section) {
+        this._fp5ListData = null;
+        const list = document.createElement('salla-products-list');
+        list.setAttribute('source', 'products');
+        list.setAttribute('items-count', '8');
+        list.style.cssText = 'position:absolute;visibility:hidden;height:0;overflow:hidden;pointer-events:none;';
+        section.appendChild(list);
+
+        // Salla event bus fires when the web component fetches products
+        try {
+            salla.event.once('salla-products-list::products.fetched', (res) => {
+                const p = res?.products || res?.items || res?.data?.products;
+                if (Array.isArray(p) && p.length) this._fp5ListData = p;
+            });
+        } catch { /* salla.event unavailable */ }
+    }
+
+    _waitForListEvent(ms) {
+        return new Promise(resolve => {
+            if (this._fp5ListData?.length) return resolve(this._fp5ListData);
+            const deadline = setTimeout(() => resolve([]), ms);
+            const check = setInterval(() => {
+                if (this._fp5ListData?.length) {
+                    clearInterval(check);
+                    clearTimeout(deadline);
+                    resolve(this._fp5ListData);
+                }
+            }, 200);
+        });
     }
 
     async _loadNextPage() {
