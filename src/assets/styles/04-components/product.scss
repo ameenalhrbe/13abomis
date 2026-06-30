@@ -465,7 +465,11 @@ salla-quantity-input[max='1']{
     .s-quantity-input-button {
       background: var(--lux-gold, #c8a94a) !important;
       border-color:  var(--lux-gold, #c8a94a) !important;
-      color: var(--lux-dark, #0f2a1e) !important;
+      color: #000 !important;
+    }
+    .s-quantity-input-input,
+    input {
+      color: #000 !important;
     }
   }
 
