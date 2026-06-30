@@ -398,3 +398,256 @@
 .s-block--tabs-produtcs + .s-block--tabs-produtcs {
   padding-top: 2em;
 }
+
+/* =====================================================
+   Perfume / Featured Products Style 4
+   ===================================================== */
+
+:root {
+  --perfume-green:       #1a4731;
+  --perfume-gold:        #c8a94a;
+  --perfume-gold-l:      #e2c97e;
+  --perfume-img-height:  200px;
+  --perfume-img-overlap: 36px;    /* how much the image overflows above the white card */
+}
+
+.s-block--perfume-products {
+  @apply py-8 sm:py-16;
+}
+
+/* ── Section header ── */
+.perfume-section__header {
+  @apply flex justify-center mb-10 sm:mb-14;
+}
+
+.perfume-section__title-wrapper {
+  @apply flex flex-col items-center gap-2;
+}
+
+.perfume-section__title {
+  @apply font-bold text-white px-8 py-2.5;
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  background-color: var(--perfume-green);
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+}
+
+.perfume-section__title-line {
+  display: block;
+  width: 60px;
+  height: 4px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--perfume-gold), var(--perfume-gold-l));
+}
+
+/* ── Products grid ── */
+.perfume-products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  /* top padding creates room for the floating bottle image */
+  padding-top: calc(var(--perfume-img-height) / 2 + var(--perfume-img-overlap));
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+/* ── Card wrapper (image + white card stacked) ── */
+.perfume-card-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+  }
+}
+
+/* ── Product image — floats above the white card ── */
+.perfume-card__image-area {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  /* positions the image so its bottom overlaps the white card */
+  margin-bottom: calc(-1 * var(--perfume-img-overlap));
+  padding: 0 16px;
+  z-index: 2;
+  pointer-events: none; /* clicks pass through to the link inside */
+
+  a {
+    pointer-events: auto;
+  }
+}
+
+.perfume-card__image {
+  height: var(--perfume-img-height);
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.20));
+  transition: transform 0.4s ease;
+  display: block;
+
+  .perfume-card-wrap:hover & {
+    transform: scale(1.05) translateY(-6px);
+  }
+
+  @media (min-width: 768px) {
+    height: 220px;
+  }
+}
+
+/* Discount badge */
+.perfume-card__badge {
+  @apply absolute text-white text-xs font-bold px-2 py-0.5 rounded;
+  top: 4px;
+  inset-inline-start: 4px;
+  background: var(--perfume-green);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Wishlist button */
+.perfume-card__wishlist {
+  position: absolute;
+  top: 4px;
+  inset-inline-end: 4px;
+  z-index: 3;
+  pointer-events: auto;
+
+  button, [part="button"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    color: #aaa !important;
+    padding: 4px !important;
+
+    &:hover { color: #e05 !important; }
+  }
+}
+
+/* ── White card body ── */
+.perfume-card {
+  @apply bg-white shadow-default flex flex-col items-center gap-2.5 px-4 pt-10 pb-5;
+  border-radius: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Product name */
+.perfume-card__name {
+  @apply text-center font-bold text-gray-800 text-sm leading-snug w-full hover:text-primary transition-colors;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.perfume-card__subtitle {
+  @apply block text-xs font-normal text-gray-400 mt-0.5;
+}
+
+/* ── Prices ── */
+.perfume-card__price-row {
+  @apply flex items-center justify-center gap-2 flex-wrap;
+}
+
+.perfume-card__price-old {
+  @apply text-xs text-red-500;
+  text-decoration: line-through;
+}
+
+.perfume-card__price-current {
+  @apply text-sm font-bold text-gray-800;
+}
+
+/* ── Actions: add-to-cart button + quantity ── */
+.perfume-card__actions {
+  @apply flex items-center w-full gap-1.5 mt-0.5;
+}
+
+/* Add to cart */
+.perfume-card__add-btn {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  button, [part="button"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 100%;
+    padding: 8px 8px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff !important;
+    background: var(--perfume-green) !important;
+    border: none !important;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.25s;
+
+    &:hover { background: #122f22 !important; }
+
+    i { font-size: 15px; }
+  }
+}
+
+/* Quantity input */
+.perfume-card__quantity {
+  flex-shrink: 0;
+
+  .s-quantity-input-container {
+    display: flex;
+    align-items: center;
+    background: var(--perfume-gold);
+    border: none !important;
+    border-radius: 50px;
+    overflow: hidden;
+    height: 36px;
+    min-width: 80px;
+  }
+
+  .s-quantity-input-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover { background: rgba(0,0,0,0.10); }
+  }
+
+  .s-quantity-input-input {
+    background: transparent;
+    border: none;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+    font-size: 13px;
+    width: 28px;
+    padding: 0;
+  }
+}
+
+/* ── Rating ── */
+.perfume-card__rating {
+  @apply flex justify-center w-full;
+
+  salla-rating-stars {
+    --star-color: var(--perfume-gold);
+  }
+}

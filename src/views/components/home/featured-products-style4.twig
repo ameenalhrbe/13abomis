@@ -1,0 +1,114 @@
+{#
+| Variable          | Type      | Description                                   |
+|-------------------|-----------|-----------------------------------------------|
+| title             | string    | Section title (from twilight.json field)      |
+| products          | Product[] | Array of products (chosen_products source)    |
+| items             | array     | Fallback: built-in featured-products format   |
+| items[].title     | string    | Section title                                 |
+| items[].products  | Product[] |                                               |
+| items[].limit     | Int       |                                               |
+| position          | int       | Sorting block index                           |
+#}
+{% set component_id = 'featured-products-style4-' ~ position %}
+
+{#— Normalise: support both custom-component vars and built-in items format —#}
+{% if items is defined and items|length %}
+  {% set _sections = items %}
+{% else %}
+  {% set _sections = [{ title: title, products: products }] %}
+{% endif %}
+
+<section class="s-block s-block--perfume-products container" id="{{ component_id }}">
+
+    {% for section in _sections %}
+    <div class="perfume-section">
+
+        {# ── Section Title ── #}
+        {% if section.title %}
+        <div class="perfume-section__header">
+            <div class="perfume-section__title-wrapper">
+                <h2 class="perfume-section__title">{{ section.title }}</h2>
+                <span class="perfume-section__title-line"></span>
+            </div>
+        </div>
+        {% endif %}
+
+        {# ── Products Grid ── #}
+        <div class="perfume-products-grid">
+            {% for product in section.products|slice(0, section.limit ?? 8) %}
+
+            <div class="perfume-card-wrap">
+
+                {# Product image — floats above the white card #}
+                <div class="perfume-card__image-area">
+                    <a href="{{ product.url }}" aria-label="{{ product.name }}">
+                        <img
+                            src="{{ product.image.url }}"
+                            alt="{{ product.image.alt ?? product.name }}"
+                            class="perfume-card__image"
+                            loading="lazy"
+                        />
+                    </a>
+
+                    {% if product.is_on_sale and product.discount_percentage %}
+                    <span class="perfume-card__badge">{{ product.discount_percentage }}</span>
+                    {% endif %}
+
+                    <salla-button shape="icon" size="sm" class="perfume-card__wishlist"
+                        onclick="salla.wishlist.toggle({{ product.id }})"
+                        title="{{ 'wishlist.add' | trans }}">
+                        <i class="sicon-heart{{ product.is_in_wishlist ? '-fill' : '' }}"></i>
+                    </salla-button>
+                </div>
+
+                {# White card body #}
+                <div class="perfume-card">
+
+                    <a href="{{ product.url }}" class="perfume-card__name">
+                        {{ product.name }}
+                        {% if product.subtitle %}
+                        <span class="perfume-card__subtitle">{{ product.subtitle }}</span>
+                        {% endif %}
+                    </a>
+
+                    <div class="perfume-card__price-row">
+                        {% if product.is_on_sale %}
+                        <span class="perfume-card__price-old">{{ product.regular_price | money }}</span>
+                        {% endif %}
+                        <span class="perfume-card__price-current">{{ product.price | money }}</span>
+                    </div>
+
+                    <div class="perfume-card__actions">
+                        <salla-add-product-button
+                            product-id="{{ product.id }}"
+                            product-status="{{ product.status }}"
+                            product-type="{{ product.type }}"
+                            class="perfume-card__add-btn"
+                        >
+                            <i class="sicon-bag-add"></i>
+                            <span>{{ 'cart.add_to_cart' | trans }}</span>
+                        </salla-add-product-button>
+
+                        <salla-quantity-input
+                            product-id="{{ product.id }}"
+                            max="{{ product.max_quantity }}"
+                            class="perfume-card__quantity"
+                        ></salla-quantity-input>
+                    </div>
+
+                    {% if product.rating and product.rating.count > 0 %}
+                    <div class="perfume-card__rating">
+                        <salla-rating-stars rate="{{ product.rating.stars }}"></salla-rating-stars>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+
+    </div>
+    {% endfor %}
+
+</section>
