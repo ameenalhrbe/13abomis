@@ -8,6 +8,19 @@
 {% extends "layouts.master" %}
 {% block content %}
     {% component home %}
+
+    {# ── Best Sellers (fp5 style) — always-on, auto-fetches from store API ── #}
+    <div id="fp5-auto-section"
+         data-api="{{ store.api }}"
+         data-title="{{ 'الأكثر مبيعاً' }}"
+         class="fp5-auto-loading">
+      <div class="container">
+        <div class="fp5-skel-head"></div>
+        <div class="fp5-skel-grid">
+          {% for i in 1..4 %}<div class="fp5-skel-card"></div>{% endfor %}
+        </div>
+      </div>
+    </div>
 {% endblock %}
 {% block scripts %}
     <script defer src="{{ 'home.js' | asset }}"></script>

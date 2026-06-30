@@ -970,3 +970,46 @@
 
   salla-rating-stars { --star-color: var(--perfume-gold); }
 }
+
+/* ── Auto-loaded fp5 section: skeleton placeholder ── */
+@keyframes fp5-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+.fp5-auto-loading {
+  padding: 48px 0 56px;
+
+  .fp5-skel-head {
+    width: 160px;
+    height: 42px;
+    border-radius: 8px;
+    background: #e0ddd5;
+    margin: 0 auto 48px;
+    animation: fp5-pulse 1.4s ease-in-out infinite;
+  }
+
+  .fp5-skel-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 16px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px 20px;
+    }
+  }
+
+  .fp5-skel-card {
+    height: 280px;
+    border-radius: 24px;
+    background: linear-gradient(135deg, #ede8df, #e0ddd5);
+    animation: fp5-pulse 1.4s ease-in-out infinite;
+
+    @media (min-width: 768px) { height: 320px; }
+
+    &:nth-child(2) { animation-delay: 0.15s; }
+    &:nth-child(3) { animation-delay: 0.30s; }
+    &:nth-child(4) { animation-delay: 0.45s; }
+  }
+}
