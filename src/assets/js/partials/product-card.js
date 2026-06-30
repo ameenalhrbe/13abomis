@@ -123,3 +123,39 @@ class ProductCard extends HTMLElement {
 }
 
 customElements.define('custom-salla-product-card', ProductCard);
+
+/* ─────────────────────────────────────────────────────────────
+   MutationObserver: intercept every <salla-product-card> the
+   Salla SDK injects and swap it for our fp5 custom card.
+   This covers salla-products-list, salla-products-slider, and
+   any other Salla component that renders the default card.
+   ───────────────────────────────────────────────────────────── */
+(function interceptSallaCards() {
+    function replace(card) {
+        // Salla sets .product as a JS property; some contexts use the attribute
+        let raw = card.product
+            ? (typeof card.product === 'string' ? card.product : JSON.stringify(card.product))
+            : card.getAttribute('product');
+        if (!raw) return;
+
+        const el = document.createElement('custom-salla-product-card');
+        el.setAttribute('product', raw);
+        card.replaceWith(el);
+    }
+
+    function scan(root) {
+        if (root.tagName === 'SALLA-PRODUCT-CARD') { replace(root); return; }
+        root.querySelectorAll?.('salla-product-card').forEach(replace);
+    }
+
+    const obs = new MutationObserver(mutations => {
+        for (const { addedNodes } of mutations) {
+            for (const node of addedNodes) {
+                if (node.nodeType === 1) scan(node);
+            }
+        }
+    });
+
+    const start = () => obs.observe(document.body, { childList: true, subtree: true });
+    document.body ? start() : document.addEventListener('DOMContentLoaded', start);
+})();

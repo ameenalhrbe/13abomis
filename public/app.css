@@ -1314,6 +1314,14 @@ select{
 .transform{
     transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
+@keyframes spin{
+    to{
+        transform: rotate(360deg);
+    }
+}
+.animate-spin{
+    animation: spin 1s linear infinite;
+}
 .cursor-pointer{
     cursor: pointer;
 }
@@ -2054,15 +2062,6 @@ select{
 }
 .opacity-60{
     opacity: 0.6;
-}
-.opacity-80{
-    opacity: 0.8;
-}
-.shadow{
-    --tw-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-    box-shadow: 0 0 rgba(0,0,0,0), 0 0 rgba(0,0,0,0), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 rgba(0,0,0,0)), var(--tw-ring-shadow, 0 0 rgba(0,0,0,0)), var(--tw-shadow);
 }
 .shadow-default{
     --tw-shadow: 5px 10px 30px #2B2D340D;;
@@ -7821,6 +7820,23 @@ input[type=radio].sr-only:checked ~ div.s-loyalty-prize-item-check {
     color: rgba(209, 213, 219, 1);
     color: rgba(209, 213, 219, var(--tw-text-opacity, 1));
 }
+.s-loyalty-program-no-content .\!icon{
+    margin-bottom: 1rem;
+    display: flex;
+    height: 8rem;
+    width: 8rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    --tw-bg-opacity: 1;
+    background-color: rgba(243, 244, 246, 1);
+    background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
+    font-size: 3rem;
+    line-height: 1;
+    --tw-text-opacity: 1;
+    color: rgba(209, 213, 219, 1);
+    color: rgba(209, 213, 219, var(--tw-text-opacity, 1));
+}
 .s-loyalty-program-no-content p{
     margin-bottom: 1rem;
     font-size: 1rem;
@@ -10930,6 +10946,23 @@ input[type=radio].s-order-totals-card-heading:checked ~ div.absolute {
     color: rgba(156, 163, 175, var(--tw-text-opacity, 1));
 }
 .s-orders-no-content .icon{
+    margin-bottom: 1rem;
+    display: flex;
+    height: 8rem;
+    width: 8rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    --tw-bg-opacity: 1;
+    background-color: rgba(243, 244, 246, 1);
+    background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
+    font-size: 3rem;
+    line-height: 1;
+    --tw-text-opacity: 1;
+    color: rgba(209, 213, 219, 1);
+    color: rgba(209, 213, 219, var(--tw-text-opacity, 1));
+}
+.s-orders-no-content .\!icon{
     margin-bottom: 1rem;
     display: flex;
     height: 8rem;
@@ -15504,6 +15537,8 @@ input[type=radio].sr-only:checked ~ div.s-search-icon-wrap {
     border-color: rgba(229, 231, 235, var(--tw-border-opacity, 1));
     border-right-color: #414042;
     border-right-color: var(--color-primary);
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
 }
 .s-search-results{
     position: absolute;
@@ -17981,6 +18016,23 @@ input[type=radio].sr-only:checked ~ div.s-verify-back {
     color: rgba(156, 163, 175, var(--tw-text-opacity, 1));
 }
 .s-wallet-no-content .icon{
+    margin-bottom: 1rem;
+    display: flex;
+    height: 8rem;
+    width: 8rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    --tw-bg-opacity: 1;
+    background-color: rgba(243, 244, 246, 1);
+    background-color: rgba(243, 244, 246, var(--tw-bg-opacity, 1));
+    font-size: 3rem;
+    line-height: 1;
+    --tw-text-opacity: 1;
+    color: rgba(209, 213, 219, 1);
+    color: rgba(209, 213, 219, var(--tw-text-opacity, 1));
+}
+.s-wallet-no-content .\!icon{
     margin-bottom: 1rem;
     display: flex;
     height: 8rem;
@@ -22075,11 +22127,12 @@ input[type=radio].sr-only:checked ~ div.s-block--slider-with-bg .slider-bg:befor
    Perfume / Featured Products Style 4
    ===================================================== */
 :root {
-  --perfume-green: #1a4731;
-  --perfume-gold: #c8a94a;
-  --perfume-gold-l: #e2c97e;
+  /* alias fp5 colour tokens to the luxury header palette */
+  --perfume-green: var(--lux-green, #1a4731);
+  --perfume-gold: var(--lux-gold, #c8a94a);
+  --perfume-gold-l: var(--lux-gold-l, #e2c97e);
   --perfume-img-height: 200px;
-  --perfume-img-overlap: 36px; /* how much the image overflows above the white card */
+  --perfume-img-overlap: 36px;
 }
 .s-block--perfume-products{
     padding-top: 2rem;
@@ -22736,6 +22789,142 @@ input[type=radio].sr-only:checked ~ div.perfume-card__badge {
 }
 .fp5-card__stars salla-rating-stars {
   --star-color: var(--perfume-gold);
+}
+/* ══════════════════════════════════════════════════════
+   custom-salla-product-card as fp5 card in any context
+   (style1, style3, salla-products-list, listing pages)
+   ══════════════════════════════════════════════════════ */
+custom-salla-product-card.fp5-item {
+  display: block;
+  /* self-contain space for the floating bottle above the white card */
+  padding-top: 110px;
+}
+custom-salla-product-card.fp5-item > .fp5-float {
+  margin-top: -110px; /* pull float into the reserved padding space */
+}
+/* fp5-grid container that wraps custom-salla-product-card elements */
+.fp5-grid:has(custom-salla-product-card) {
+  padding-top: 20px; /* extra breathing room at section top */
+}
+/* salla-products-list rendered with fp5 cards — ensure grid layout */
+.fp5-products-list {
+  display: block;
+  /* target the inner product grid rendered by salla-products-list */
+}
+.fp5-products-list .s-product-list,
+.fp5-products-list [class*=product-list],
+.fp5-products-list [class*=products-grid],
+.fp5-products-list [class*=product-grid] {
+  display: grid !important;
+}
+.fp5-products-list .s-product-list,
+.fp5-products-list [class*=product-list],
+.fp5-products-list [class*=products-grid],
+.fp5-products-list [class*=product-grid] {
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 32px 16px;
+  gap: 32px 16px;
+  padding-top: 20px;
+}
+@media (min-width: 768px) {
+  .fp5-products-list .s-product-list,
+  .fp5-products-list [class*=product-list],
+  .fp5-products-list [class*=products-grid],
+  .fp5-products-list [class*=product-grid] {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 20px;
+  }
+}
+/* ── Load-more button ── */
+.fp5-load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.fp5-load-more {
+  background: #1a4731;
+  background: var(--perfume-green);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 48px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.25s, opacity 0.2s;
+  letter-spacing: 0.02em;
+}
+.fp5-load-more:hover {
+  background: #122f22;
+}
+.fp5-load-more:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.fp5-load-more i {
+  vertical-align: middle;
+  margin-right: 4px;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin {
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+}
+/* ── Auto-loaded fp5 section: skeleton placeholder ── */
+@keyframes fp5-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+.fp5-auto-loading {
+  padding: 48px 0 56px;
+}
+.fp5-auto-loading .fp5-skel-head {
+  width: 160px;
+  height: 42px;
+  border-radius: 8px;
+  background: #e0ddd5;
+  margin: 0 auto 48px;
+  animation: fp5-pulse 1.4s ease-in-out infinite;
+}
+.fp5-auto-loading .fp5-skel-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 24px 16px;
+  gap: 24px 16px;
+}
+@media (min-width: 768px) {
+  .fp5-auto-loading .fp5-skel-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px 20px;
+  }
+}
+.fp5-auto-loading .fp5-skel-card {
+  height: 280px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ede8df, #e0ddd5);
+  animation: fp5-pulse 1.4s ease-in-out infinite;
+}
+@media (min-width: 768px) {
+  .fp5-auto-loading .fp5-skel-card {
+    height: 320px;
+  }
+}
+.fp5-auto-loading .fp5-skel-card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.fp5-auto-loading .fp5-skel-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.fp5-auto-loading .fp5-skel-card:nth-child(4) {
+  animation-delay: 0.45s;
 }
 salla-slider{
     display: block;
@@ -24722,12 +24911,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
-.before\:text-orange-300::before{
-    content: var(--tw-content);
-    --tw-text-opacity: 1;
-    color: rgba(253, 186, 116, 1);
-    color: rgba(253, 186, 116, var(--tw-text-opacity, 1));
-}
 .first\:rounded-t-md:first-child{
     border-top-left-radius: 0.375rem;
     border-top-right-radius: 0.375rem;
@@ -25135,9 +25318,6 @@ body.font-dinnextltarabic-regular .btn--add-to-cart {
     }
     .lg\:grid-cols-2{
         grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-    .lg\:grid-cols-4{
-        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
     .lg\:grid-cols-6{
         grid-template-columns: repeat(6, minmax(0, 1fr));

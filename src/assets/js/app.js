@@ -160,20 +160,28 @@ isElementLoaded(selector){
   });
 
   }
- initAttachWishlistListeners() {
+  initAttachWishlistListeners() {
     let isListenerAttached = false;
-  
+
     function toggleFavoriteIcon(id, isAdded = true) {
+      // legacy s-product-card-wishlist-btn (old card style)
       document.querySelectorAll('.s-product-card-wishlist-btn[data-id="' + id + '"]').forEach(btn => {
         app.toggleElementClassIf(btn, 's-product-card-wishlist-added', 'not-added', () => isAdded);
         app.toggleElementClassIf(btn, 'pulse-anime', 'un-favorited', () => isAdded);
       });
+      // fp5 wish button (new card style)
+      document.querySelectorAll(`custom-salla-product-card[id="${id}"] .fp5-wish`).forEach(btn => {
+        const icon = btn.querySelector('i');
+        if (!icon) return;
+        icon.className = isAdded ? 'sicon-heart-fill text-red-400' : 'sicon-heart';
+        btn.classList.toggle('fp5-wish--active', isAdded);
+      });
     }
-  
+
     if (!isListenerAttached) {
       salla.wishlist.event.onAdded((event, id) => toggleFavoriteIcon(id));
       salla.wishlist.event.onRemoved((event, id) => toggleFavoriteIcon(id, false));
-      isListenerAttached = true; // Mark the listener as attached
+      isListenerAttached = true;
     }
   }
 

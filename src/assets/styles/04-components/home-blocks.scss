@@ -404,11 +404,12 @@
    ===================================================== */
 
 :root {
-  --perfume-green:       #1a4731;
-  --perfume-gold:        #c8a94a;
-  --perfume-gold-l:      #e2c97e;
+  /* alias fp5 colour tokens to the luxury header palette */
+  --perfume-green:       var(--lux-green,  #1a4731);
+  --perfume-gold:        var(--lux-gold,   #c8a94a);
+  --perfume-gold-l:      var(--lux-gold-l, #e2c97e);
   --perfume-img-height:  200px;
-  --perfume-img-overlap: 36px;    /* how much the image overflows above the white card */
+  --perfume-img-overlap: 36px;
 }
 
 .s-block--perfume-products {
