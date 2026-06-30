@@ -409,6 +409,7 @@
   --perfume-gold:        var(--lux-gold,   #c8a94a);
   --perfume-gold-l:      var(--lux-gold-l, #e2c97e);
   --perfume-img-height:  200px;
+  --perfume-img-width:   140px;
   --perfume-img-overlap: 36px;
 }
 
@@ -486,8 +487,8 @@
 
 .perfume-card__image {
   height: var(--perfume-img-height);
-  width: auto;
-  max-width: 100%;
+  width: var(--perfume-img-width);
+  max-width: var(--perfume-img-width);
   object-fit: contain;
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.20));
   transition: transform 0.4s ease;
@@ -730,9 +731,9 @@
   a { pointer-events: auto; }
 
   &__img {
-    height: 155px;
-    width: auto;
-    max-width: 90px;
+    height: var(--perfume-img-height);
+    width: var(--perfume-img-width);
+    max-width: var(--perfume-img-width);
     object-fit: contain;
     filter: drop-shadow(0 12px 22px rgba(0,0,0,0.22));
     transition: transform 0.4s ease;
@@ -740,11 +741,6 @@
 
     .fp5-item:hover & {
       transform: scale(1.06) translateY(-5px);
-    }
-
-    @media (min-width: 768px) {
-      height: 200px;
-      max-width: 120px;
     }
   }
 }
@@ -979,11 +975,10 @@
 
 custom-salla-product-card.fp5-item {
   display: block;
-  /* self-contain space for the floating bottle above the white card */
-  padding-top: 110px;
+  padding-top: calc(var(--perfume-img-height) / 2 + var(--perfume-img-overlap));
 
   > .fp5-float {
-    margin-top: -110px; /* pull float into the reserved padding space */
+    margin-top: calc(-1 * (var(--perfume-img-height) / 2 + var(--perfume-img-overlap)));
   }
 }
 
