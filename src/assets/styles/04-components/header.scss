@@ -1,196 +1,337 @@
+// ─── Luxury Header Variables ───────────────────────────────────────────────
+:root {
+  --lux-dark:   #0f2a1e;
+  --lux-green:  #1a4731;
+  --lux-gold:   #c8a94a;
+  --lux-gold-l: #e2c97e;
+  --lux-white:  #f9f6f0;
+  --lux-nav-h:  72px;
+}
 
-/* Top Nav */
-.top-navbar {
-  @apply flex py-2 min-h-[48px];
+// ─── Top Bar ───────────────────────────────────────────────────────────────
+.lux-topbar {
+  background: var(--lux-dark);
+  border-bottom: 1px solid rgba(200, 169, 74, 0.18);
+  min-height: 40px;
 
-  @screen lg {
-    @apply py-1.5;
+  &__inner {
+    @apply flex items-center justify-between;
+    min-height: 40px;
   }
 
-  .topnav-has-bg & {
-    @apply bg-[color:var(--topnav-bg)];
+  &__start,
+  &__end {
+    @apply flex items-center gap-3 text-xs;
+    color: rgba(249, 246, 240, 0.75);
   }
 
-  .topnav-has-gradient & {
-    @apply bg-gradient-to-r from-[color:var(--topnav-gradient-from)] to-[color:var(--topnav-gradient-to)];
-  }
+  &__lang-btn {
+    @apply flex items-center gap-1.5 px-3 py-1 rounded-full text-xs transition-all duration-200;
+    background: rgba(200, 169, 74, 0.08);
+    color: var(--lux-gold);
+    border: 1px solid rgba(200, 169, 74, 0.2);
 
-  .topnav-has-text-color & {
-    @apply text-[color:var(--topnav-text-color)];
-  }
-
-  .s-search-input{
-    @apply bg-gray-200/50 hover:bg-gray-200/70 border-none;
-  }
-
-  @media (max-width: 640px) {
-    .s-search-results{
-      @apply w-screen max-w-[100vw] rtl:-left-2.5 ltr:-right-2.5; 
-    }
-  } 
-
-  .topnav-is-dark & {
-    @apply bg-dark text-gray-300;
-
-    .btn--circle-gray,
-    .btn--rounded-gray,
-    .s-search-input{
-      @apply bg-gray-100/10 hover:bg-gray-100/[0.15]
+    &:hover {
+      background: rgba(200, 169, 74, 0.18);
+      border-color: rgba(200, 169, 74, 0.5);
     }
 
-    .topnav-link-item{
-      @apply border-gray-300/10;
-    }
-
-    .s-search-input{
-      @apply text-white;
-    }
+    i { font-size: 13px; }
   }
 
-  .search-btn{
-    @apply grow sm:grow-0 justify-start md:justify-center;
+  &__sep {
+    @apply mx-0.5 opacity-40;
+  }
+
+  // Override salla topnav link styles
+  .topnav-link-item {
+    color: rgba(249, 246, 240, 0.65);
+    border-color: rgba(255,255,255,0.1);
+    font-size: 0.75rem;
+
+    &:hover { color: var(--lux-gold); }
+  }
+
+  // Override salla-contacts
+  salla-contacts {
+    --contacts-color: rgba(249, 246, 240, 0.65);
+    font-size: 0.75rem;
   }
 }
 
-// contacs menu items - pages menu items
-.topnav-link-item{
-  @apply inline-block transition duration-300 px-4 rtl:last:pl-0 ltr:last:pr-0 py-px text-sm leading-none ltr:border-r rtl:border-l border-gray-200 ltr:last:border-0 rtl:last:border-0 hover:opacity-80;
+// ─── Main Nav ──────────────────────────────────────────────────────────────
+.lux-mainnav {
+  background: var(--lux-green) !important;
+  min-height: var(--lux-nav-h);
+  border-bottom: 2px solid rgba(200, 169, 74, 0.25);
+  position: relative;
 
-  &.right-side{
-    @apply rtl:first:pr-0 ltr:first:pl-0
+  &.fixed-pinned .inner {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    width: 100%;
+    z-index: 50;
+    background: var(--lux-green) !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+    transform: translate3d(0, -100%, 0);
+
+    @media (max-width: 1024px) {
+      transform: none;
+      top: -80px;
+    }
+  }
+
+  &.fixed-header .inner {
+    transform: translate3d(0, 0, 0);
+    @media (max-width: 1024px) { transform: none; top: 0; }
+  }
+
+  &.animated .inner {
+    transition: top 0.4s ease, transform 0.4s ease, opacity 0.3s ease;
+  }
+
+  &__inner {
+    @apply flex items-center justify-between;
+    min-height: var(--lux-nav-h);
+    gap: 1rem;
+  }
+
+  // ── Brand / Logo ──
+  &__brand {
+    @apply flex items-center gap-3 shrink-0;
+  }
+
+  // ── Desktop Menu ──
+  &__menu {
+    @apply hidden lg:flex flex-1 justify-center;
+
+    // Target custom-main-menu links
+    custom-main-menu,
+    .main-menu {
+      @apply flex items-center;
+    }
+  }
+
+  // ── Actions ──
+  &__actions {
+    @apply flex items-center gap-1 shrink-0;
   }
 }
 
-/* Main Nav */
-.main-nav-container {
-  @apply min-h-[68px] lg:min-h-[84px];
-  
-  // Custom background Color
-  .has-bg &,
-  .has-bg & .sub-menu{
-    @apply bg-[color:var(--mainnav-bg)];
+// ─── Logo ──────────────────────────────────────────────────────────────────
+.lux-logo {
+  @apply flex items-center;
+
+  img {
+    max-height: 50px;
+    max-width: 140px;
+    width: auto;
+    filter: brightness(0) invert(1);     // Make logo white on dark bg
+    transition: opacity 0.2s ease;
+
+    .lux-mainnav.fixed-header & {
+      max-height: 40px;
+    }
   }
 
-  // Custom text color
-  .has-text-color & {
-    @apply text-[color:var(--mainnav-text-color)];
+  &:hover img { opacity: 0.85; }
+}
+
+// ─── Hamburger ─────────────────────────────────────────────────────────────
+.lux-burger {
+  @apply flex flex-col justify-center items-center gap-1.5 w-9 h-9 rounded-lg cursor-pointer;
+  background: rgba(200, 169, 74, 0.12);
+  border: 1px solid rgba(200, 169, 74, 0.25);
+  padding: 8px;
+  transition: background 0.2s;
+
+  span {
+    display: block;
+    width: 18px;
+    height: 1.5px;
+    background: var(--lux-gold);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  &:hover {
+    background: rgba(200, 169, 74, 0.22);
+  }
+}
+
+// ─── Action Buttons ────────────────────────────────────────────────────────
+.lux-action-btn {
+  @apply flex items-center justify-center relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(200, 169, 74, 0.08);
+  border: 1px solid rgba(200, 169, 74, 0.2);
+  color: var(--lux-white);
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(200, 169, 74, 0.2);
+    border-color: var(--lux-gold);
+    transform: translateY(-1px);
+  }
+
+  &__icon {
+    font-size: 1.15rem;
+    color: var(--lux-white);
+  }
+}
+
+.lux-actions-divider {
+  display: inline-block;
+  width: 1px;
+  height: 22px;
+  background: rgba(200, 169, 74, 0.2);
+  margin: 0 4px;
+}
+
+// ─── Cart badge ────────────────────────────────────────────────────────────
+.s-cart-summary-count {
+  background: var(--lux-gold) !important;
+  color: #1a1a1a !important;
+  font-weight: 700;
+  font-size: 10px;
+  top: 2px;
+  inset-inline-start: -4px;
+}
+
+.s-cart-summary-total {
+  display: none; // hide price text in action button
+}
+
+// ─── Search ────────────────────────────────────────────────────────────────
+.lux-search-wrap {
+  @apply flex items-center;
+  min-width: 180px;
+  max-width: 280px;
+
+  @media (max-width: 768px) {
+    min-width: 120px;
+    max-width: 160px;
+  }
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+
+  .s-search-input {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(200, 169, 74, 0.2) !important;
+    color: var(--lux-white) !important;
+    border-radius: 50px;
+    transition: border-color 0.2s, background 0.2s;
+
+    &::placeholder { color: rgba(249, 246, 240, 0.45); }
+
+    &:focus-within,
+    &:hover {
+      background: rgba(255, 255, 255, 0.13) !important;
+      border-color: rgba(200, 169, 74, 0.5) !important;
+    }
+  }
+
+  .s-search-results {
+    border: 1px solid rgba(200, 169, 74, 0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    border-radius: 12px;
+    margin-top: 6px;
+  }
+}
+
+// ─── Desktop Menu Item Overrides ───────────────────────────────────────────
+.lux-mainnav {
+  custom-main-menu,
+  .main-menu {
+    // Generic menu link styling applied via ::part or direct CSS cascade
+  }
+
+  // Salla custom-main-menu renders links; target them via light DOM
+  a.main-menu-link,
+  .main-menu > li > a {
+    color: rgba(249, 246, 240, 0.85) !important;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 8px 14px !important;
+    position: relative;
+    transition: color 0.2s;
+    letter-spacing: 0.03em;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: var(--lux-gold);
+      border-radius: 2px;
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+
+    &:hover,
+    &.is-active {
+      color: var(--lux-gold) !important;
+      &::after { transform: scaleX(1); }
+    }
+  }
+
+  .sub-menu {
+    background: var(--lux-dark) !important;
+    border: 1px solid rgba(200, 169, 74, 0.15);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    border-radius: 10px;
+
+    a {
+      color: rgba(249, 246, 240, 0.75) !important;
+      &:hover { color: var(--lux-gold) !important; background: rgba(200, 169, 74, 0.06) !important; }
+    }
+  }
+}
+
+// ─── salla-user-menu overrides ─────────────────────────────────────────────
+.lux-mainnav {
+  salla-user-menu {
+    --user-menu-avatar-size: 38px;
   }
 }
 
 .menu-item {
   @apply flex items-center px-6 py-2.5 sm:text-sm text-gray-500 transition-colors duration-300 hover:bg-gray-200/30;
-
-  &.logout{
-    @apply text-red-400;
-  }
-
-  &.is-active{
-    @apply text-primary bg-gray-200/20;
-  }
+  &.logout { @apply text-red-400; }
+  &.is-active { @apply text-primary bg-gray-200/20; }
 }
 
-/* Sticky Header */
+// ─── Sticky Shrink ─────────────────────────────────────────────────────────
 .main-nav-container {
-  &.animated {
-    .inner {
-      transition: top 0.5s, transform 0.5s, -webkit-transform 0.5s, opacity 0.4s;
-    }
-  }
-
-  &.fixed-pinned {
-    .inner {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0;
-      width: 100%;
-      z-index: 29;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-      transform: translate3d(0, -100%, 0);
-
-      @media (max-width: 1024px){
-        transform: none;
-        top: -70px;
-      }
-    }
-
-    .navbar-brand {
-      img {
-        max-height: 40px;
-      }
-
-      h4 {
-        line-height: 1;
-      }
-    }
-
-    .main-menu > li > a {
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
-  }
-
-  &.fixed-header {
-    .inner {
-      transform: translate3d(0, 0, 0);
-
-      @media (max-width: 1024px){
-        transform: none;
-        top: 0;
-      }
-    }
+  &.animated .inner {
+    transition: top 0.4s, transform 0.4s, opacity 0.3s;
   }
 }
 
 .navbar-brand {
   @apply items-center flex my-2 lg:my-0;
+  img { @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px]; }
+}
 
-  img {
-    @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px];
+// ─── Mobile ────────────────────────────────────────────────────────────────
+@media (max-width: 1023px) {
+  .lux-mainnav__menu { display: none; }
+
+  .lux-mainnav__inner {
+    gap: 0.5rem;
   }
 }
 
-// Mainnav cart icon
-.header-btn{
-  @apply border-none outline-none transition-opacity hover:opacity-80;
-
-  &__icon{
-    @apply text-xl w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-700;
-    &.icon{
-      @apply mr-[9px] rtl:ml-[9px] rtl:mr-[unset];
-    }
-  }
-}
-
-salla-user-menu{
-  @apply shrink-0;
-}
-
-// cart summary
-.s-cart-summary-total{
-  @apply text-black font-[600];
-}
-
-.s-cart-summary-count{
-  @apply -top-0.5 ltr:-left-1.5 rtl:-right-1.5 bg-red-800;
-}
-
-#nav-cart{
-  @apply flex items-center rtl:mr-4 ltr:ml-4 relative whitespace-nowrap;
-
-  .icon{
-    @apply rtl:ml-2 ltr:mr-2;
-  }
-
-  span{
-    @apply absolute top-1 rtl:-right-2 ltr:-left-2;
-  }
-}
-
-
-// Search
-.header-search{
-  .s-search-results{
-    @apply z-10;
-  }
-}
+// ─── Topnav overrides (theme BG classes) ───────────────────────────────────
+.topnav-has-bg .lux-topbar { background: var(--topnav-bg); }
+.topnav-is-dark .lux-topbar { background: #0a1f15; }
+.has-bg .lux-mainnav,
+.has-bg .lux-mainnav .sub-menu { background: var(--mainnav-bg) !important; }
+.has-text-color .lux-mainnav { color: var(--mainnav-text-color); }
