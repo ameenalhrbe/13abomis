@@ -219,9 +219,21 @@
   }
 
   .tab-trigger{
-    @apply text-gray-800;
-    &.is-active button{
-      @apply text-primary-reverse bg-primary-dark border-primary-dark;
+    button {
+      color: var(--lux-dark, #0f2a1e) !important;
+      border-color: rgba(26, 71, 49, 0.35) !important;
+      transition: color 0.2s, background 0.2s, border-color 0.2s !important;
+
+      &:hover {
+        color: var(--lux-green, #1a4731) !important;
+        border-color: var(--lux-green, #1a4731) !important;
+      }
+    }
+
+    &.is-active button {
+      background: var(--lux-green, #1a4731) !important;
+      border-color: var(--lux-green, #1a4731) !important;
+      color: #fff !important;
     }
   }
 }
@@ -240,10 +252,24 @@
   }
 
   .tab-trigger{
-    @apply text-gray-800 font-bold leading-7;
+    @apply font-bold leading-7;
 
-    &.is-active button{
-      @apply text-primary-dark border-primary-dark;
+    button {
+      color: var(--lux-dark, #0f2a1e) !important;
+      border-color: rgba(26, 71, 49, 0.35) !important;
+      transition: color 0.2s, border-color 0.2s !important;
+
+      &:hover {
+        color: var(--lux-green, #1a4731) !important;
+        border-color: var(--lux-green, #1a4731) !important;
+      }
+    }
+
+    &.is-active button {
+      color: var(--lux-green, #1a4731) !important;
+      border-color: var(--lux-green, #1a4731) !important;
+      background: transparent !important;
+      font-weight: 700 !important;
     }
   }
 }
