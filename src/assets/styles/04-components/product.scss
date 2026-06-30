@@ -404,3 +404,125 @@ salla-quantity-input[max='1']{
     @apply cursor-not-allowed
   }
 }
+
+/* ═══════════════════════════════════════════════════════
+   Luxury Product Page — aligned with header/footer palette
+   ═══════════════════════════════════════════════════════ */
+
+/* Override Salla's --color-primary inside the product page so all web
+   components (add-to-cart, quantity, rating) inherit the lux green */
+[id^="product-"] {
+  --color-primary:       var(--lux-green,  #1a4731);
+  --color-primary-dark:  var(--lux-dark,   #0f2a1e);
+  --color-primary-light: rgba(26, 71, 49, 0.12);
+
+  /* Product name */
+  h1 { color: var(--lux-dark, #0f2a1e); }
+
+  /* Sale / regular price — replace Tailwind's red-800 hardcode */
+  .total-price        { color: var(--lux-green, #1a4731) !important; }
+  .price_is_on_sale .total-price { color: var(--lux-gold, #c8a94a) !important; }
+  .before-price       { color: #999 !important; }
+
+  /* Tags */
+  a.underline {
+    color: var(--lux-green, #1a4731) !important;
+    &:hover { color: var(--lux-gold, #c8a94a) !important; }
+  }
+
+  /* "Read more" link */
+  #btn-show-more {
+    color: var(--lux-green, #1a4731);
+    &:hover { color: var(--lux-gold, #c8a94a); }
+  }
+
+  /* Rating stars */
+  salla-rating-stars { --star-color: var(--lux-gold, #c8a94a); }
+
+  /* White info boxes — warm tint + gold border */
+  section.bg-white,
+  div.bg-white {
+    background: var(--lux-white, #f9f6f0) !important;
+    border: 1px solid rgba(200, 169, 74, 0.15);
+    border-radius: 12px;
+  }
+
+  /* Add-to-cart button */
+  salla-add-product-button {
+    button, [part="button"] {
+      background: var(--lux-green, #1a4731) !important;
+      border-color:  var(--lux-green, #1a4731) !important;
+      color: #fff !important;
+      &:hover {
+        background: var(--lux-dark, #0f2a1e) !important;
+        border-color: var(--lux-dark, #0f2a1e) !important;
+      }
+    }
+  }
+
+  /* Quantity input */
+  salla-quantity-input {
+    .s-quantity-input-button {
+      background: var(--lux-gold, #c8a94a) !important;
+      border-color:  var(--lux-gold, #c8a94a) !important;
+      color: var(--lux-dark, #0f2a1e) !important;
+    }
+  }
+
+  /* Wishlist btn in sidebar */
+  .sidebar {
+    /* Slider frame — subtle gold border */
+    salla-slider {
+      border-radius: 16px;
+      border: 1px solid rgba(200, 169, 74, 0.2);
+      overflow: hidden;
+    }
+
+    .btn--wishlist {
+      background: rgba(15, 42, 30, 0.65) !important;
+      border-color: rgba(200, 169, 74, 0.5) !important;
+      i { color: var(--lux-gold, #c8a94a) !important; }
+
+      &.s-product-card-wishlist-added i {
+        color: #e55 !important;
+      }
+    }
+  }
+
+  /* Promotion title banner */
+  .promotion-title {
+    background: var(--lux-green, #1a4731) !important;
+    color: #fff !important;
+  }
+
+  /* SKU row */
+  .bg-white.rounded-md {
+    background: var(--lux-white, #f9f6f0) !important;
+    border: 1px solid rgba(200, 169, 74, 0.15);
+  }
+
+  /* Form labels */
+  .form-label { color: var(--lux-dark, #0f2a1e); }
+
+  /* Sold / remained box */
+  .!text-red-800 { color: var(--lux-gold, #c8a94a) !important; }
+}
+
+/* Breadcrumb — gold on hover */
+.breadcrumbs salla-breadcrumb a:hover {
+  color: var(--lux-gold, #c8a94a) !important;
+}
+
+/* Reviews / comments section */
+.s-comments-product {
+  background: var(--lux-white, #f9f6f0) !important;
+}
+
+/* Mobile sticky bar */
+.sticky-product-bar {
+  background: var(--lux-dark, #0f2a1e) !important;
+  border-top: 2px solid rgba(200, 169, 74, 0.35) !important;
+  color: #fff;
+
+  .form-label, label { color: rgba(249, 246, 240, 0.85) !important; }
+}
