@@ -26,9 +26,8 @@
       source="{{ products.source }}"
       limit="{{ limit }}"
       source-value="{{ products.source_value|json_encode }}"
-      class="{{is_vertical ? 'vertical-products' : 'horizontal-products'}}"
-      {{is_vertical ? '' : 'horizontal-cards'}}
-      >
+      product-card-component="custom-salla-product-card"
+      class="fp5-products-list">
     </salla-products-list>
 </section>
 

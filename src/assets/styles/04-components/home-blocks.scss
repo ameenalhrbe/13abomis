@@ -971,6 +971,47 @@
   salla-rating-stars { --star-color: var(--perfume-gold); }
 }
 
+/* ══════════════════════════════════════════════════════
+   custom-salla-product-card as fp5 card in any context
+   (style1, style3, salla-products-list, listing pages)
+   ══════════════════════════════════════════════════════ */
+
+custom-salla-product-card.fp5-item {
+  display: block;
+  /* self-contain space for the floating bottle above the white card */
+  padding-top: 110px;
+
+  > .fp5-float {
+    margin-top: -110px; /* pull float into the reserved padding space */
+  }
+}
+
+/* fp5-grid container that wraps custom-salla-product-card elements */
+.fp5-grid:has(custom-salla-product-card) {
+  padding-top: 20px; /* extra breathing room at section top */
+}
+
+/* salla-products-list rendered with fp5 cards — ensure grid layout */
+.fp5-products-list {
+  display: block;
+
+  /* target the inner product grid rendered by salla-products-list */
+  .s-product-list,
+  [class*="product-list"],
+  [class*="products-grid"],
+  [class*="product-grid"] {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 16px;
+    padding-top: 20px;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px 20px;
+    }
+  }
+}
+
 /* ── Load-more button ── */
 .fp5-load-more-wrap {
   display: flex;

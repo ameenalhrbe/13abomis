@@ -39,20 +39,20 @@
         {% for section in items %}
             <div id="{{ component_id }}-{{ section.id }}" class="tabs__item {{ loop.first?'is-active':'' }}">
                 {% if is_slider %}
-                    <salla-products-slider 
-                      slider-id="section-{{ section.id }}-slider" 
+                    <salla-products-slider
+                      slider-id="section-{{ section.id }}-slider"
                       source="{{ section.products.source }}"
                       limit="{{ section.products.limit }}"
                       source-value="{{ section.products.source_value|json_encode }}"
-                      >
+                      product-card-component="custom-salla-product-card">
                     </salla-products-slider>
                 {% else %}
-                    <salla-products-list  
+                    <salla-products-list
                       source="{{ section.products.source }}"
                       limit="{{ section.products.limit }}"
                       source-value="{{ section.products.source_value|json_encode }}"
-                      {{is_vertical ? '' : 'horizontal-cards'}}
-                      >
+                      product-card-component="custom-salla-product-card"
+                      class="fp5-products-list">
                     </salla-products-list>
                 {% endif %}
             </div>
