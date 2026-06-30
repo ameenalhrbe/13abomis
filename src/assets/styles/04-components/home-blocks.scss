@@ -408,8 +408,8 @@
   --perfume-green:       var(--lux-green,  #1a4731);
   --perfume-gold:        var(--lux-gold,   #c8a94a);
   --perfume-gold-l:      var(--lux-gold-l, #e2c97e);
-  --perfume-img-height:  200px;
-  --perfume-img-width:   300px;
+  --perfume-img-height:  260px;
+  --perfume-img-width:   220px;
   --perfume-img-overlap: 36px;
 }
 
@@ -487,7 +487,7 @@
 
 .perfume-card__image {
   height: var(--perfume-img-height);
-  width: var(--perfume-img-width);
+  width: auto;
   max-width: min(var(--perfume-img-width), 100%);
   object-fit: contain;
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.20));
@@ -732,7 +732,7 @@
 
   &__img {
     height: var(--perfume-img-height);
-    width: var(--perfume-img-width);
+    width: auto;
     max-width: min(var(--perfume-img-width), 100%);
     object-fit: contain;
     filter: drop-shadow(0 12px 22px rgba(0,0,0,0.22));
