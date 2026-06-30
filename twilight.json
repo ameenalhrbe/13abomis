@@ -1057,10 +1057,7 @@
                     "label": "عنوان القسم",
                     "multilanguage": true,
                     "id": "title",
-                    "value": {
-                        "ar": "الأكثر مبيعاً",
-                        "en": "Best Sellers"
-                    },
+                    "value": "{  \"ar\": \"الأكثر مبيعاً\",  \"en\": \"Best Sellers\"}",
                     "required": false,
                     "format": "text",
                     "description": null,
@@ -1079,11 +1076,12 @@
                     "options": [],
                     "required": true,
                     "multichoice": true,
-                    "source": "products",
+                    "source": "Products",
                     "searchable": true,
                     "maxLength": 8,
                     "minLength": 1,
-                    "value": []
+                    "value": [],
+                    "public": true
                 }
             ]
         },
