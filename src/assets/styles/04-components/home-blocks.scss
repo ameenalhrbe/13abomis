@@ -1036,11 +1036,21 @@ custom-salla-product-card.fp5-item {
 @keyframes spin { to { transform: rotate(360deg); } }
 .animate-spin  { display: inline-block; animation: spin 0.8s linear infinite; }
 
-/* ── Auto-loaded fp5 section: skeleton placeholder ── */
+/* ── Skeleton placeholder ── */
 @keyframes fp5-pulse {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0.45; }
+  50%       { opacity: 0.35; }
 }
+
+@keyframes lux-shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position:  600px 0; }
+}
+
+/* shared shimmer mixin values */
+$skel-base:    #1a3d2a;
+$skel-shine:   #2a5c3f;
+$skel-shine-l: rgba(200, 169, 74, 0.12);
 
 .fp5-auto-loading {
   padding: 48px 0 56px;
@@ -1049,9 +1059,10 @@ custom-salla-product-card.fp5-item {
     width: 160px;
     height: 42px;
     border-radius: 8px;
-    background: #e0ddd5;
+    background: linear-gradient(90deg, $skel-base 25%, $skel-shine 50%, $skel-base 75%);
+    background-size: 600px 100%;
     margin: 0 auto 48px;
-    animation: fp5-pulse 1.4s ease-in-out infinite;
+    animation: lux-shimmer 1.6s ease-in-out infinite;
   }
 
   .fp5-skel-grid {
@@ -1068,14 +1079,31 @@ custom-salla-product-card.fp5-item {
   .fp5-skel-card {
     height: 280px;
     border-radius: 24px;
-    background: linear-gradient(135deg, #ede8df, #e0ddd5);
-    animation: fp5-pulse 1.4s ease-in-out infinite;
+    background: linear-gradient(90deg, $skel-base 25%, $skel-shine-l 50%, $skel-base 75%);
+    background-size: 600px 100%;
+    animation: lux-shimmer 1.6s ease-in-out infinite;
+    border: 1px solid rgba(200, 169, 74, 0.1);
 
     @media (min-width: 768px) { height: 320px; }
 
-    &:nth-child(2) { animation-delay: 0.15s; }
-    &:nth-child(3) { animation-delay: 0.30s; }
-    &:nth-child(4) { animation-delay: 0.45s; }
+    &:nth-child(2) { animation-delay: 0.2s; }
+    &:nth-child(3) { animation-delay: 0.4s; }
+    &:nth-child(4) { animation-delay: 0.6s; }
+  }
+}
+
+/* Salla-native salla-products-list skeleton cards */
+salla-products-list {
+  --skeleton-color:       #1a3d2a;
+  --skeleton-shine-color: #2a5c3f;
+
+  .s-skeleton,
+  [class*="skeleton"],
+  [class*="placeholder"] {
+    background: linear-gradient(90deg, #1a3d2a 25%, #2a5c3f 50%, #1a3d2a 75%) !important;
+    background-size: 600px 100% !important;
+    animation: lux-shimmer 1.6s ease-in-out infinite !important;
+    border-radius: 12px;
   }
 }
 
