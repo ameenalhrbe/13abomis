@@ -1130,6 +1130,116 @@
                     "value": []
                 }
             ]
+        },
+        {
+            "key": "b1e2f3a4-5c6d-7e8f-9a0b-1c2d3e4f5a6b",
+            "title": {
+                "ar": "بنر احترافي فاخر",
+                "en": "Luxury Hero Banner"
+            },
+            "icon": "sicon-image",
+            "path": "home.luxury-banner",
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-image",
+                    "id": "image",
+                    "label": "صورة الخلفية",
+                    "format": "image",
+                    "required": false,
+                    "value": null,
+                    "placeholder": null,
+                    "description": "المقاس المناسب 1440×580 بكسل — إذا تركتها فارغة يُعرض تدرج لوني أخضر فاخر"
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-tag",
+                    "id": "pre_title",
+                    "label": "نص صغير فوق العنوان",
+                    "format": "text",
+                    "multilanguage": true,
+                    "required": false,
+                    "value": null,
+                    "placeholder": "مثال: مجموعة حصرية",
+                    "description": "يظهر كشريط ذهبي صغير أعلى العنوان الرئيسي",
+                    "minLength": 0,
+                    "maxLength": 60
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "id": "title",
+                    "label": "العنوان الرئيسي",
+                    "format": "text",
+                    "multilanguage": true,
+                    "required": false,
+                    "value": null,
+                    "placeholder": "مثال: أناقة لا تُضاهى",
+                    "description": "يظهر بخط كبير وبارز في منتصف البنر",
+                    "minLength": 0,
+                    "maxLength": 100
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-typography",
+                    "id": "subtitle",
+                    "label": "النص التوضيحي",
+                    "format": "textarea",
+                    "multilanguage": true,
+                    "required": false,
+                    "value": null,
+                    "placeholder": "مثال: اكتشف أرقى العطور المختارة بعناية لك",
+                    "description": "جملة قصيرة أسفل العنوان الرئيسي",
+                    "minLength": 0,
+                    "maxLength": 200
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-cursor",
+                    "id": "btn_text",
+                    "label": "نص الزر",
+                    "format": "text",
+                    "multilanguage": true,
+                    "required": false,
+                    "value": null,
+                    "placeholder": "مثال: تسوّق الآن",
+                    "minLength": 0,
+                    "maxLength": 40
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-link",
+                    "id": "btn_url",
+                    "label": "رابط الزر",
+                    "format": "link",
+                    "required": false,
+                    "value": null,
+                    "placeholder": "https://..."
+                },
+                {
+                    "type": "string",
+                    "icon": "sicon-format-align-center",
+                    "id": "align",
+                    "label": "محاذاة المحتوى",
+                    "format": "select",
+                    "required": false,
+                    "value": "center",
+                    "options": [
+                        {
+                            "id": "center",
+                            "label": "وسط"
+                        },
+                        {
+                            "id": "start",
+                            "label": "يمين"
+                        },
+                        {
+                            "id": "end",
+                            "label": "يسار"
+                        }
+                    ]
+                }
+            ]
         }
     ],
     "support_url": "https://example.com",

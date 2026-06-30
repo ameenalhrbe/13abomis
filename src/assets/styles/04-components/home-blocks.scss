@@ -1078,3 +1078,175 @@ custom-salla-product-card.fp5-item {
     &:nth-child(4) { animation-delay: 0.45s; }
   }
 }
+
+/* ══════════════════════════════════════════════════════════
+   Luxury Hero Banner (home.luxury-banner)
+   ══════════════════════════════════════════════════════════ */
+.lux-banner {
+  position: relative;
+  overflow: hidden;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+
+  @media (min-width: 768px) { min-height: 580px; }
+
+  /* ── Background ── */
+  &__bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--lux-dark, #0f2a1e) 0%, var(--lux-green, #1a4731) 100%);
+  }
+
+  &__bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 8s ease;
+
+    .lux-banner:hover & { transform: scale(1.04); }
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 42, 30, 0.55) 0%,
+      rgba(15, 42, 30, 0.75) 100%
+    );
+  }
+
+  /* ── Decorative corner lines ── */
+  &__corner {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-color: rgba(200, 169, 74, 0.55);
+    border-style: solid;
+    pointer-events: none;
+
+    @media (min-width: 768px) { width: 90px; height: 90px; }
+
+    &--tl {
+      top: 24px;
+      inset-inline-start: 24px;
+      border-width: 2px 0 0 2px;
+    }
+    &--br {
+      bottom: 24px;
+      inset-inline-end: 24px;
+      border-width: 0 2px 2px 0;
+    }
+  }
+
+  /* ── Content body ── */
+  &__body {
+    position: relative;
+    z-index: 2;
+    padding: 48px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 720px;
+    width: 100%;
+
+    &--center { align-items: center; text-align: center; }
+    &--start  { align-items: flex-start; text-align: start; }
+    &--end    { align-items: flex-end; text-align: end; }
+  }
+
+  /* ── Pre-title pill ── */
+  &__pre {
+    display: inline-block;
+    background: rgba(200, 169, 74, 0.18);
+    border: 1px solid rgba(200, 169, 74, 0.55);
+    color: var(--lux-gold, #c8a94a);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 4px 16px;
+    border-radius: 50px;
+    text-transform: uppercase;
+  }
+
+  /* ── Main title ── */
+  &__title {
+    color: #fff;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.2;
+    text-shadow: 0 2px 16px rgba(0,0,0,0.4);
+    margin: 0;
+  }
+
+  /* ── Gold divider ── */
+  &__divider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 140px;
+
+    span {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--lux-gold, #c8a94a), transparent);
+    }
+  }
+
+  &__divider-diamond {
+    flex: 0 !important;
+    width: 8px !important;
+    height: 8px !important;
+    background: var(--lux-gold, #c8a94a) !important;
+    transform: rotate(45deg);
+    border-radius: 1px;
+  }
+
+  /* ── Subtitle ── */
+  &__sub {
+    color: rgba(249, 246, 240, 0.85);
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0;
+  }
+
+  /* ── CTA Button ── */
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding: 14px 32px;
+    background: var(--lux-gold, #c8a94a);
+    color: var(--lux-dark, #0f2a1e);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 50px;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+    box-shadow: 0 4px 20px rgba(200, 169, 74, 0.35);
+
+    &:hover {
+      background: var(--lux-gold-l, #e2c97e);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(200, 169, 74, 0.5);
+      color: var(--lux-dark, #0f2a1e);
+    }
+  }
+
+  &__btn-icon {
+    font-size: 1.1rem;
+    transition: transform 0.2s;
+
+    .lux-banner__btn:hover & { transform: translateX(-3px); }
+  }
+}

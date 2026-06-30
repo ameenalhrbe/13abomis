@@ -1,0 +1,67 @@
+{#
+| Variable            | Type    | Description                        |
+|---------------------|---------|------------------------------------|
+| component.image     | string  | Background image URL               |
+| component.pre_title | string  | Small label above main title       |
+| component.title     | string  | Main heading                       |
+| component.subtitle  | string  | Subtitle / tagline                 |
+| component.btn_text  | string  | Call-to-action button label        |
+| component.btn_url   | string  | Call-to-action button link         |
+| component.align     | string  | center | start | end               |
+| position            | int     | Block sort order                   |
+#}
+{% set _img       = component.image %}
+{% set _pre       = component.pre_title %}
+{% set _title     = component.title %}
+{% set _sub       = component.subtitle %}
+{% set _btn_text  = component.btn_text %}
+{% set _btn_url   = component.btn_url %}
+{% set _align     = component.align | default('center') %}
+
+<section class="lux-banner s-block" id="lux-banner-{{ position }}">
+
+  {# Background layer #}
+  <div class="lux-banner__bg">
+    {% if _img %}
+      {% if position == 0 %}
+        <img src="{{ _img }}" alt="{{ _title }}" class="lux-banner__bg-img" fetchpriority="high">
+      {% else %}
+        <img src="{{ 'images/s-empty-wide.png' | asset }}" data-src="{{ _img }}"
+             alt="{{ _title }}" class="lux-banner__bg-img lazy">
+      {% endif %}
+    {% endif %}
+    <div class="lux-banner__overlay"></div>
+  </div>
+
+  {# Decorative corner lines #}
+  <span class="lux-banner__corner lux-banner__corner--tl"></span>
+  <span class="lux-banner__corner lux-banner__corner--br"></span>
+
+  {# Content #}
+  <div class="lux-banner__body lux-banner__body--{{ _align }}">
+
+    {% if _pre %}
+      <div class="lux-banner__pre">{{ _pre }}</div>
+    {% endif %}
+
+    {% if _title %}
+      <h2 class="lux-banner__title">{{ _title }}</h2>
+    {% endif %}
+
+    <div class="lux-banner__divider">
+      <span></span><span class="lux-banner__divider-diamond"></span><span></span>
+    </div>
+
+    {% if _sub %}
+      <p class="lux-banner__sub">{{ _sub }}</p>
+    {% endif %}
+
+    {% if _btn_text and _btn_url %}
+      <a href="{{ _btn_url }}" class="lux-banner__btn">
+        {{ _btn_text }}
+        <i class="sicon-keyboard_arrow_left lux-banner__btn-icon"></i>
+      </a>
+    {% endif %}
+
+  </div>
+</section>
