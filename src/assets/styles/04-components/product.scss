@@ -504,8 +504,8 @@ salla-quantity-input[max='1']{
   /* Form labels */
   .form-label { color: var(--lux-dark, #0f2a1e); }
 
-  /* Sold / remained box */
-  .!text-red-800 { color: var(--lux-gold, #c8a94a) !important; }
+  /* Sold / remained box icons */
+  .sicon-fire, .sicon-box-bankers { color: var(--lux-gold, #c8a94a) !important; }
 }
 
 /* Breadcrumb — gold on hover */
