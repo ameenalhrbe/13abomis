@@ -1,0 +1,117 @@
+{#
+| Variable               | Type      | Description                            |
+|------------------------|-----------|----------------------------------------|
+| component              | object    | Merchant settings from twilight.json   |
+| component.title        | string    | Section title                          |
+| component.products     | Product[] | Products chosen by merchant            |
+| position               | int       | Sorting block index                    |
+#}
+{% set component_id = 'fp5-' ~ position %}
+{% set _title    = component.title %}
+{% set _products = component.products %}
+
+{% if _products | length %}
+<section class="s-block fp5-section container" id="{{ component_id }}">
+
+  {# ── Section Title ── #}
+  {% if _title %}
+  <div class="fp5-head">
+    <div class="fp5-title-pill">{{ _title }}</div>
+    <div class="fp5-title-dot"></div>
+  </div>
+  {% endif %}
+
+  {# ── Products Grid ── #}
+  <div class="fp5-grid">
+    {% for product in _products %}
+
+    {% set _tags = product.tags | default([]) %}
+    {% set _half = (_tags | length / 2) | round(0, 'ceil') | number_format(0,'','') %}
+
+    <div class="fp5-item">
+
+      {# ── Floating Bottle + Notes ── #}
+      <div class="fp5-float">
+
+        {# Notes — Start side (right in RTL) #}
+        <div class="fp5-notes fp5-notes--start">
+          {% for tag in _tags | slice(0, _half) %}
+          <div class="fp5-note">
+            <span class="fp5-note__dot"></span>
+            <span class="fp5-note__text">{{ tag }}</span>
+          </div>
+          {% endfor %}
+        </div>
+
+        {# Bottle Image #}
+        <div class="fp5-bottle">
+          {% if product.is_on_sale and product.discount_percentage %}
+          <span class="fp5-badge">{{ product.discount_percentage }}</span>
+          {% endif %}
+          <a href="{{ product.url }}" aria-label="{{ product.name }}">
+            <img src="{{ product.image.url }}"
+                 alt="{{ product.image.alt | default(product.name) }}"
+                 class="fp5-bottle__img" loading="lazy">
+          </a>
+          <button class="fp5-wish"
+                  onclick="salla.wishlist.toggle({{ product.id }})"
+                  title="{{ 'wishlist.add' | trans }}">
+            <i class="{{ product.is_in_wishlist ? 'sicon-heart-fill text-red-400' : 'sicon-heart' }}"></i>
+          </button>
+        </div>
+
+        {# Notes — End side (left in RTL) #}
+        <div class="fp5-notes fp5-notes--end">
+          {% for tag in _tags | slice(_half) %}
+          <div class="fp5-note fp5-note--rev">
+            <span class="fp5-note__text">{{ tag }}</span>
+            <span class="fp5-note__dot"></span>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>{# /fp5-float #}
+
+      {# ── White Card ── #}
+      <div class="fp5-card">
+
+        <a href="{{ product.url }}" class="fp5-card__name">{{ product.name }}</a>
+
+        <div class="fp5-card__prices">
+          {% if product.is_on_sale %}
+          <del class="fp5-card__price-old">{{ product.regular_price | money }}</del>
+          {% endif %}
+          <span class="fp5-card__price">{{ product.price | money }}</span>
+        </div>
+
+        <div class="fp5-card__actions">
+          <salla-add-product-button
+            product-id="{{ product.id }}"
+            product-status="{{ product.status }}"
+            product-type="{{ product.type }}"
+            class="fp5-add-btn">
+            <i class="sicon-bag-add"></i>
+            <span>{{ 'cart.add_to_cart' | trans }}</span>
+          </salla-add-product-button>
+
+          <salla-quantity-input
+            product-id="{{ product.id }}"
+            max="{{ product.max_quantity }}"
+            class="fp5-qty">
+          </salla-quantity-input>
+        </div>
+
+        {% if product.rating and product.rating.count > 0 %}
+        <div class="fp5-card__stars">
+          <salla-rating-stars rate="{{ product.rating.stars }}"></salla-rating-stars>
+        </div>
+        {% endif %}
+
+      </div>{# /fp5-card #}
+
+    </div>{# /fp5-item #}
+    {% endfor %}
+  </div>
+
+</section>
+{% endif %}

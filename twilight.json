@@ -1043,6 +1043,51 @@
             "fields": []
         },
         {
+            "key": "c7e9f2a1-4b8d-4c3e-a6f0-d1e2b3c4a5f6",
+            "title": {
+                "ar": "الأكثر مبيعاً - مع ملاحظات العطر",
+                "en": "Best Sellers - Perfume Notes Style"
+            },
+            "icon": "sicon-award-ribbon",
+            "path": "home.featured-products-style5",
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "عنوان القسم",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": {
+                        "ar": "الأكثر مبيعاً",
+                        "en": "Best Sellers"
+                    },
+                    "required": false,
+                    "format": "text",
+                    "description": null,
+                    "placeholder": "أدخل عنوان القسم...",
+                    "minLength": 0,
+                    "maxLength": 100
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "label": "المنتجات",
+                    "id": "products",
+                    "format": "dropdown-list",
+                    "description": "اختر المنتجات التي تريد عرضها في هذا القسم",
+                    "selected": [],
+                    "options": [],
+                    "required": true,
+                    "multichoice": true,
+                    "source": "products",
+                    "searchable": true,
+                    "maxLength": 8,
+                    "minLength": 1,
+                    "value": []
+                }
+            ]
+        },
+        {
             "key": "a3f1c2d4-7e8b-4a9c-b0d1-e2f3a4b5c6d7",
             "title": {
                 "ar": "منتجات مميزة - عرض العطور",
