@@ -80,39 +80,46 @@ class Home extends BasePage {
 
     async _fetchFP5Page(page) {
         const perPage = 8;
-        const apiBase = this._fp5Api;
         const q       = `per_page=${perPage}&page=${page}`;
-        let products  = [];
-        let lastPage  = 1;
 
-        // 1 — Salla JS SDK
-        try {
-            if (salla?.api?.get) {
-                const r = await salla.api.get('/store/products', { per_page: perPage, page });
-                const p = r?.data?.products || r?.products;
-                if (Array.isArray(p) && p.length) {
-                    products = p;
-                    lastPage = r?.data?.pagination?.total_pages || r?.data?.last_page || 1;
-                    return { products, lastPage };
-                }
-            }
-        } catch { /* fall through */ }
+        const parse = (json) => {
+            const p = json?.data?.products
+                   || json?.data?.data
+                   || json?.products
+                   || (Array.isArray(json?.data) ? json.data : null);
+            if (!Array.isArray(p) || !p.length) return null;
+            const pg   = json?.data?.pagination || json?.pagination || json?.meta;
+            const last = pg?.total_pages || pg?.last_page || pg?.pageCount
+                      || (pg?.total ? Math.ceil(pg.total / perPage) : 1)
+                      || 1;
+            return { products: p, lastPage: last };
+        };
 
-        // 2 — direct REST fetch
-        const paths = [`/v1/products?${q}`, `/products?${q}`];
-        for (const path of paths) {
+        // 1 — Salla JS SDK (handles auth + CORS automatically)
+        for (const path of ['/store/v1/products', '/store/products', '/products']) {
             try {
-                const res  = await fetch(apiBase + path, { headers: { Accept: 'application/json' } });
-                if (!res.ok) continue;
-                const json = await res.json();
-                const p    = json?.data?.products || json?.data?.data || json?.products;
-                if (Array.isArray(p) && p.length) {
-                    products = p;
-                    const pg = json?.data?.pagination || json?.pagination || json?.meta;
-                    lastPage = pg?.total_pages || pg?.last_page || pg?.pageCount || 1;
-                    return { products, lastPage };
-                }
-            } catch { /* next */ }
+                if (!salla?.api?.get) break;
+                const r      = await salla.api.get(path, { per_page: perPage, page });
+                const result = parse(r);
+                if (result) return result;
+            } catch { /* try next path */ }
+        }
+
+        // 2 — direct fetch; try store.api (from Twig) and salla.config as bases
+        const bases = [
+            (this._fp5Api || '').replace(/\/+$/, ''),
+            (() => { try { return (salla?.config?.get?.('store.urls.api') || '').replace(/\/+$/, ''); } catch { return ''; } })(),
+        ].filter(Boolean);
+
+        for (const base of bases) {
+            for (const path of [`/v1/products?${q}`, `/products?${q}`]) {
+                try {
+                    const res = await fetch(base + path, { headers: { Accept: 'application/json' } });
+                    if (!res.ok) continue;
+                    const result = parse(await res.json());
+                    if (result) return result;
+                } catch { /* next */ }
+            }
         }
 
         return { products: [], lastPage: 1 };
