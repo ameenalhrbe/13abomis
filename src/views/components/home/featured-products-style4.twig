@@ -39,7 +39,7 @@
                 <span class="perfume-card__badge">{{ product.discount_percentage }}</span>
                 {% endif %}
                 <salla-button shape="icon" size="sm" class="perfume-card__wishlist"
-                    onclick="salla.wishlist.toggle({{ product.id }})"
+                    onclick="salla.wishlist.toggle"{{ product.id }}"
                     title="{{ 'wishlist.add' | trans }}">
                     <i class="{{ product.is_in_wishlist ? 'sicon-heart-fill' : 'sicon-heart' }}"></i>
                 </salla-button>
