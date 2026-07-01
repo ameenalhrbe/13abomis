@@ -86,6 +86,19 @@
       "variant": "h6"
     },
     {
+      "type": "string",
+      "icon": "sicon-format-text-alt",
+      "label": "نص الشعار (بدلاً من صورة الشعار)",
+      "description": "اكتب نص الشعار هنا ليظهر مكان صورة الشعار — اتركه فارغاً لعرض صورة الشعار",
+      "id": "logo_text",
+      "format": "text",
+      "required": false,
+      "value": "IOAPP",
+      "placeholder": "مثال: IOAPP",
+      "minLength": 0,
+      "maxLength": 20
+    },
+    {
       "id": "header_is_sticky",
       "label": "تثبت القائمة الرئيسية أعلى الصفحة عند التمرير لأسفل",
       "description": "يُنصح بالغاء تفعيلها في حالة وجود عناصر كثيرة في القائمة المنسدلة",

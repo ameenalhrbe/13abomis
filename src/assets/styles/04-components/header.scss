@@ -135,6 +135,23 @@
   }
 
   &:hover img { opacity: 0.85; }
+
+  // Text logo (when logo_text setting is used instead of image)
+  &-text {
+    font-family: 'Montserrat', 'Arial', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+    color: var(--lux-gold);
+    text-transform: uppercase;
+    line-height: 1;
+    transition: color 0.2s ease, opacity 0.2s ease;
+    white-space: nowrap;
+
+    &::first-letter { color: var(--lux-gold-l); }
+  }
+
+  &:hover .lux-logo-text { opacity: 0.85; }
 }
 
 // ─── Hamburger ─────────────────────────────────────────────────────────────

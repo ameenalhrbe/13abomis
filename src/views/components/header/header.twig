@@ -52,9 +52,14 @@
           <a class="lg:hidden lux-burger mburger mburger--collapse" href="#mobile-menu" aria-label="Open menu">
             <span></span><span></span><span></span>
           </a>
+          {% set logo_text = theme.settings.get('logo_text') %}
           <a class="navbar-brand lux-logo" href="">
-            <img fetchpriority="high" width="100%" height="100%" loading="eager"
-                 src="{{ store.logo }}" alt="{{ store.name }} logo">
+            {% if logo_text %}
+              <span class="lux-logo-text" aria-label="{{ store.name }}">{{ logo_text }}</span>
+            {% else %}
+              <img fetchpriority="high" width="100%" height="100%" loading="eager"
+                   src="{{ store.logo }}" alt="{{ store.name }} logo">
+            {% endif %}
             {% if is_page('index') %}
               <h1 class="sr-only">{{ store.name }}</h1>
             {% else %}
