@@ -91,7 +91,44 @@
                 <span class="lux-logged-dot"></span>
               </button>
               <div class="lux-user-portal" id="lux-user-portal">
-                <salla-user-menu></salla-user-menu>
+                <div class="lux-umenu">
+                  <div class="lux-umenu__head">
+                    <span class="lux-umenu__avatar">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"/>
+                        <path d="M4 20c0-3.866 3.582-7 8-7s8 3.134 8 7"/>
+                      </svg>
+                    </span>
+                    <div class="lux-umenu__info">
+                      <span class="lux-umenu__name">{{ user.name }}</span>
+                      {% if user.email %}
+                        <span class="lux-umenu__email">{{ user.email }}</span>
+                      {% endif %}
+                    </div>
+                  </div>
+                  <nav class="lux-umenu__nav">
+                    <a href="/customer/profile" class="lux-umenu__item">
+                      <i class="sicon-user-circle"></i>
+                      <span>حسابي</span>
+                    </a>
+                    <a href="/customer/orders" class="lux-umenu__item">
+                      <i class="sicon-list"></i>
+                      <span>طلباتي</span>
+                    </a>
+                    <a href="/wishlist" class="lux-umenu__item">
+                      <i class="sicon-heart"></i>
+                      <span>المفضلة</span>
+                    </a>
+                    <a href="/customer/addresses" class="lux-umenu__item">
+                      <i class="sicon-location"></i>
+                      <span>عناويني</span>
+                    </a>
+                    <button class="lux-umenu__item lux-umenu__item--logout" onclick="salla.auth.logout()">
+                      <i class="sicon-logout"></i>
+                      <span>تسجيل الخروج</span>
+                    </button>
+                  </nav>
+                </div>
               </div>
             </div>
           {% else %}
