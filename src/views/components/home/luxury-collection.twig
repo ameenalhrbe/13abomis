@@ -10,20 +10,22 @@
 {% set _subtitle = component.subtitle %}
 {% set _products = component.products | default([]) %}
 
-<section class="s-block lux-coll container" id="lux-coll-{{ position }}">
+<section class="s-block fp5-section lux-coll container" id="lux-coll-{{ position }}">
 
-  {# ── Section Header ── #}
-  <div class="lux-coll__head">
+  {# ── Section Header (luxury button style) ── #}
+  <div class="fp5-head lux-coll__head">
     <div class="lux-coll__title-wrap">
-      <h2 class="lux-coll__title">{{ _title }}</h2>
+      <span class="lux-coll__title">{{ _title }}</span>
     </div>
     {% if _subtitle %}
       <p class="lux-coll__subtitle">{{ _subtitle }}</p>
     {% endif %}
   </div>
 
-  {# ── Products Grid ── #}
+  {# ── Products ── #}
   {% if _products | length %}
+
+    {# Merchant selected specific products — iterate server-side (fp5 cards) #}
     <div class="fp5-grid">
       {% for product in _products %}
 
@@ -48,9 +50,16 @@
               <span class="fp5-badge">{{ product.discount_percentage }}</span>
               {% endif %}
               <a href="{{ product.url }}" aria-label="{{ product.name }}">
-                <img src="{{ product.image.url }}"
-                     alt="{{ product.image.alt | default(product.name) }}"
-                     class="fp5-bottle__img" loading="lazy">
+                {% if loop.first %}
+                  <img src="{{ product.image.url }}"
+                       alt="{{ product.image.alt | default(product.name) }}"
+                       class="fp5-bottle__img" loading="eager" fetchpriority="high">
+                {% else %}
+                  <img src="{{ 'images/s-empty.png' | asset }}"
+                       data-src="{{ product.image.url }}"
+                       alt="{{ product.image.alt | default(product.name) }}"
+                       class="fp5-bottle__img lazy">
+                {% endif %}
               </a>
               <button class="fp5-wish"
                       onclick="salla.wishlist.toggle({{ product.id }})"
@@ -111,12 +120,14 @@
     </div>
 
   {% else %}
-    {# Fallback: show all products using native list (until merchant selects products) #}
+
+    {# No products selected — show all store products with fp5 card style #}
     <salla-products-list
       source="products"
       product-card-component="custom-salla-product-card"
       class="fp5-products-list">
     </salla-products-list>
+
   {% endif %}
 
 </section>
