@@ -697,17 +697,17 @@
 
 .fp5-title-pill {
   display: inline-block;
-  background: var(--perfume-green);
+  background: var(--lux-dark, #0f2a1e);
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   padding: 10px 36px;
   border-radius: 8px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
 }
 
 .fp5-title-dot {
-  width: 28px;
+  width: 32px;
   height: 4px;
   background: var(--perfume-gold);
   border-radius: 4px;
@@ -1356,44 +1356,6 @@ salla-products-list {
 // Luxury Collection Section
 // ═══════════════════════════════════════════════════════
 .lux-coll {
-  // Head overrides fp5-head default margin
-  &__head {
-    margin-bottom: 3rem;
-  }
-
-  &__title-wrap {
-    display: inline-block;
-    position: relative;
-
-    // Gold gradient underline
-    &::after {
-      content: '';
-      display: block;
-      margin: 10px auto 0;
-      width: 60%;
-      height: 3px;
-      border-radius: 2px;
-      background: linear-gradient(90deg,
-        transparent,
-        var(--lux-gold, #c8a94a) 30%,
-        var(--lux-gold-l, #e2c97e) 50%,
-        var(--lux-gold, #c8a94a) 70%,
-        transparent
-      );
-    }
-  }
-
-  &__title {
-    display: inline-block;
-    background: var(--lux-dark, #0f2a1e);
-    color: var(--lux-white, #f9f6f0);
-    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    padding: 0.65rem 2.5rem;
-    border-radius: 8px;
-  }
-
   &__subtitle {
     margin-top: 1rem;
     color: rgba(15, 42, 30, 0.65);

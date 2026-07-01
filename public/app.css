@@ -24615,17 +24615,17 @@ input[type=radio].sr-only:checked ~ div.perfume-card__badge {
 }
 .fp5-title-pill {
   display: inline-block;
-  background: #1a4731;
-  background: var(--perfume-green);
+  background: #0f2a1e;
+  background: var(--lux-dark, #0f2a1e);
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
   padding: 10px 36px;
   border-radius: 8px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
 }
 .fp5-title-dot {
-  width: 28px;
+  width: 32px;
   height: 4px;
   background: #c8a94a;
   background: var(--perfume-gold);
@@ -25317,35 +25317,6 @@ salla-products-list [class*=placeholder] {
 }
 .lux-banner__btn:hover .lux-banner__btn-icon {
   transform: translateX(-3px);
-}
-.lux-coll__head {
-  margin-bottom: 3rem;
-}
-.lux-coll__title-wrap {
-  display: inline-block;
-  position: relative;
-}
-.lux-coll__title-wrap::after {
-  content: "";
-  display: block;
-  margin: 10px auto 0;
-  width: 60%;
-  height: 3px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, transparent, #c8a94a 30%, #e2c97e 50%, #c8a94a 70%, transparent);
-  background: linear-gradient(90deg, transparent, var(--lux-gold, #c8a94a) 30%, var(--lux-gold-l, #e2c97e) 50%, var(--lux-gold, #c8a94a) 70%, transparent);
-}
-.lux-coll__title {
-  display: inline-block;
-  background: #0f2a1e;
-  background: var(--lux-dark, #0f2a1e);
-  color: #f9f6f0;
-  color: var(--lux-white, #f9f6f0);
-  font-size: max(1.05rem, min(2.5vw, 1.35rem));
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 0.65rem 2.5rem;
-  border-radius: 8px;
 }
 .lux-coll__subtitle {
   margin-top: 1rem;
