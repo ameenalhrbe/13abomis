@@ -1211,10 +1211,11 @@
                     "icon": "sicon-link",
                     "id": "btn_url",
                     "label": "رابط الزر",
-                    "format": "link",
+                    "format": "url",
                     "required": false,
                     "value": null,
-                    "placeholder": "https://..."
+                    "placeholder": "https://...",
+                    "description": "رابط الصفحة التي يذهب إليها الزر (مثال: /products أو رابط تصنيف)"
                 },
                 {
                     "type": "string",

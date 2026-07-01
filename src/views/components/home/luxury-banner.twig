@@ -15,7 +15,7 @@
 {% set _title     = component.title %}
 {% set _sub       = component.subtitle %}
 {% set _btn_text  = component.btn_text %}
-{% set _btn_url   = component.btn_url %}
+{% set _btn_url   = component.btn_url | default(store.urls.products) %}
 {% set _align     = component.align | default('center') %}
 
 <section class="lux-banner s-block" id="lux-banner-{{ position }}">
