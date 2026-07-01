@@ -313,7 +313,13 @@
 
 // Portal panel — hidden by default, shown on button click via JS
 .lux-user-portal {
-  display: none;
+  // visibility+opacity instead of display:none so salla-user-menu initialises on page load
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
+
   position: absolute;
   top: calc(100% + 10px);
   inset-inline-end: 0;
@@ -325,7 +331,13 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
   overflow: hidden;
 
-  &.is-open { display: block; }
+  &.is-open {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0s;
+  }
 
   // User greeting header inside the panel
   salla-user-menu {
