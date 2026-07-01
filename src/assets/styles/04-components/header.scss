@@ -311,24 +311,19 @@
   position: relative;
 }
 
-// The hidden salla-user-menu sits at bottom-end of wrap so dropdown opens below
+// The hidden salla-user-menu overlays the lux button — trigger is invisible,
+// only the dropdown panel becomes visible when opened
 .lux-hidden-menu {
   position: absolute;
-  bottom: 0;
+  top: 0;
   inset-inline-end: 0;
-  width: 0;
-  height: 0;
-  overflow: visible;
 
-  // Hide the avatar trigger — only the dropdown panel should show
+  // Hide the avatar image/button — keep its size so dropdown anchors correctly
   .dropdown__trigger {
-    width: 0 !important;
-    height: 0 !important;
     opacity: 0 !important;
     pointer-events: none !important;
-    overflow: hidden !important;
-    padding: 0 !important;
-    border: none !important;
+    width: 42px !important;
+    height: 42px !important;
   }
 
   // Dropdown panel — dark lux palette
