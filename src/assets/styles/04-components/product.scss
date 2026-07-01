@@ -530,3 +530,102 @@ salla-quantity-input[max='1']{
 
   .form-label, label { color: rgba(249, 246, 240, 0.85) !important; }
 }
+
+/* ═══════════════════════════════════════════════════════
+   Luxury Cart Page — aligned with header/footer palette
+   ═══════════════════════════════════════════════════════ */
+
+section.cart-item {
+  --color-primary: var(--lux-green, #1a4731);
+  background: var(--lux-white, #f9f6f0) !important;
+  border: 1px solid rgba(200, 169, 74, 0.15) !important;
+  border-radius: 14px !important;
+
+  h1 a { color: var(--lux-dark, #0f2a1e); }
+
+  .text-primary { color: var(--lux-green, #1a4731) !important; }
+
+  .item-price { &.text-red-800 { color: var(--lux-gold, #c8a94a) !important; } }
+
+  salla-quantity-input {
+    .s-quantity-input-button {
+      background: var(--lux-gold, #c8a94a) !important;
+      border-color: var(--lux-gold, #c8a94a) !important;
+      color: #000 !important;
+    }
+    .s-quantity-input-input, input { color: #000 !important; }
+  }
+}
+
+// Free shipping bar card
+#free-shipping {
+  background: var(--lux-white, #f9f6f0) !important;
+  border: 1px solid rgba(200, 169, 74, 0.15) !important;
+  border-radius: 14px !important;
+
+  .bg-primary { background: var(--lux-green, #1a4731) !important; }
+  .progress-bg { background: var(--lux-green, #1a4731) !important; }
+  .bg-border-color { background: rgba(26, 71, 49, 0.15); }
+}
+
+// Gifting card
+#cart-gifting {
+  background: var(--lux-white, #f9f6f0) !important;
+  border: 1px solid rgba(200, 169, 74, 0.15) !important;
+  border-radius: 14px !important;
+}
+
+// Summary card (scoped by unique submit child)
+.shadow-default:has(.cart-submit-wrap) {
+  background: var(--lux-white, #f9f6f0) !important;
+  border: 1px solid rgba(200, 169, 74, 0.15) !important;
+  border-radius: 14px !important;
+
+  h2 { color: var(--lux-dark, #0f2a1e); }
+
+  .border-t.border-gray-200,
+  .border-b.border-gray-200 { border-color: rgba(200, 169, 74, 0.2) !important; }
+
+  .form-input:focus { border-color: var(--lux-green, #1a4731) !important; box-shadow: none; }
+}
+
+// Complete order button
+#cart-submit {
+  --color-primary: var(--lux-green, #1a4731);
+
+  button, [part="button"] {
+    background: var(--lux-green, #1a4731) !important;
+    border-color: var(--lux-green, #1a4731) !important;
+    color: #fff !important;
+    &:hover {
+      background: var(--lux-dark, #0f2a1e) !important;
+      border-color: var(--lux-dark, #0f2a1e) !important;
+    }
+  }
+}
+
+// Coupon save button
+.btn--coupon.has-not-coupon {
+  button, [part="button"] {
+    background: var(--lux-green, #1a4731) !important;
+    border-color: var(--lux-green, #1a4731) !important;
+    color: #fff !important;
+  }
+}
+
+// Empty cart state
+.no-content-placeholder {
+  .icon { color: var(--lux-gold, #c8a94a) !important; }
+
+  .btn--outline-primary {
+    border-color: var(--lux-green, #1a4731) !important;
+    color: var(--lux-green, #1a4731) !important;
+    &:hover {
+      background: var(--lux-green, #1a4731) !important;
+      color: #fff !important;
+    }
+  }
+}
+
+// Conditional offer banner
+salla-conditional-offer { --color-primary: var(--lux-green, #1a4731); }
