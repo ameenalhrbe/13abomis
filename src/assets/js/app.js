@@ -22,6 +22,7 @@ class App extends AppHelpers {
     this.initiateModals();
     this.initiateCollapse();
     this.initAttachWishlistListeners();
+    this.initLuxUserMenu();
     this.changeMenuDirection()
     initTootTip();
     this.loadModalImgOnclick();
@@ -160,6 +161,23 @@ isElementLoaded(selector){
   });
 
   }
+  initLuxUserMenu() {
+    const btn    = document.querySelector('[data-lux-user-toggle]');
+    const portal = document.getElementById('lux-user-portal');
+    if (!btn || !portal) return;
+
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      portal.classList.toggle('is-open');
+    });
+
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.lux-user-wrap')) {
+        portal.classList.remove('is-open');
+      }
+    });
+  }
+
   initAttachWishlistListeners() {
     let isListenerAttached = false;
 

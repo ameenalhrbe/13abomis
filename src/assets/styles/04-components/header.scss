@@ -311,33 +311,41 @@
   position: relative;
 }
 
-// The hidden salla-user-menu overlays the lux button — trigger is invisible,
-// only the dropdown panel becomes visible when opened
-.lux-hidden-menu {
+// Portal panel — hidden by default, shown on button click via JS
+.lux-user-portal {
+  display: none;
   position: absolute;
-  top: 0;
+  top: calc(100% + 10px);
   inset-inline-end: 0;
+  z-index: 300;
+  min-width: 220px;
+  background: var(--lux-dark, #0f2a1e);
+  border: 1px solid rgba(200, 169, 74, 0.3);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
 
-  // Hide the avatar image/button — keep its size so dropdown anchors correctly
+  &.is-open { display: block; }
+
+  // User greeting header inside the panel
+  salla-user-menu {
+    --color-primary: var(--lux-green, #1a4731);
+    display: block;
+  }
+
+  // Style the salla-user-menu header section (greeting + avatar)
+  .s-user-menu-header,
+  [class*="user-menu-header"],
   .dropdown__trigger {
-    opacity: 0 !important;
-    pointer-events: none !important;
-    width: 42px !important;
-    height: 42px !important;
+    background: rgba(200, 169, 74, 0.08) !important;
+    border-bottom: 1px solid rgba(200, 169, 74, 0.2) !important;
+    padding: 14px 16px !important;
+    color: var(--lux-white, #f9f6f0) !important;
   }
 
-  // Dropdown panel — dark lux palette
-  .dropdown__menu {
-    background: var(--lux-dark, #0f2a1e) !important;
-    border: 1px solid rgba(200, 169, 74, 0.3) !important;
-    border-radius: 14px !important;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45) !important;
-  }
-
-  // Menu items
+  // Menu items — lux palette
   .menu-item {
     color: rgba(249, 246, 240, 0.85) !important;
-
     i { color: rgba(200, 169, 74, 0.65); transition: color 0.2s; }
 
     &:hover, &.is-active {
