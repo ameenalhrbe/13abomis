@@ -1304,3 +1304,53 @@ salla-products-list {
     .lux-banner__btn:hover & { transform: translateX(-3px); }
   }
 }
+
+// ═══════════════════════════════════════════════════════
+// Luxury Collection Section
+// ═══════════════════════════════════════════════════════
+.lux-coll {
+  &__head {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+
+  &__title-wrap {
+    display: inline-block;
+    position: relative;
+
+    // Gold underline bar
+    &::after {
+      content: '';
+      display: block;
+      margin: 8px auto 0;
+      width: 55%;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(90deg,
+        transparent,
+        var(--lux-gold, #c8a94a) 30%,
+        var(--lux-gold-l, #e2c97e) 50%,
+        var(--lux-gold, #c8a94a) 70%,
+        transparent
+      );
+    }
+  }
+
+  &__title {
+    display: inline-block;
+    background: var(--lux-dark, #0f2a1e);
+    color: var(--lux-white, #f9f6f0);
+    font-size: clamp(1.05rem, 2.5vw, 1.35rem);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 0.65rem 2.5rem;
+    border-radius: 8px;
+    margin: 0;
+  }
+
+  &__subtitle {
+    margin-top: 1rem;
+    color: rgba(15, 42, 30, 0.65);
+    font-size: 0.95rem;
+  }
+}
