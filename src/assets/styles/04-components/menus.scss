@@ -109,6 +109,13 @@
 }
 // Mobile Slide Menu
 @media only screen and (max-width: 1024px) {
+  // Fix: mm-spn ul has width: calc(100% + 30%) — collapse the panel offset
+  // to prevent it causing horizontal overflow on mobile devices
+  :root { --mm-spn-panel-offset: 0px; }
+
+  // Extra containment for the off-canvas drawer
+  .mm-ocd { overflow: hidden; }
+  .mm-ocd__content { overflow: hidden; }
   .filters-opened{
     .close-filters{
       display: block !important;

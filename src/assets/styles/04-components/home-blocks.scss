@@ -1034,6 +1034,53 @@ custom-salla-product-card.fp5-item {
   }
 }
 
+// ─── fp5 Mobile Responsive ─────────────────────────────────────────────────
+@media (max-width: 640px) {
+
+  .fp5-section { padding: 32px 0 40px; }
+
+  .fp5-head { margin-bottom: 32px; }
+
+  // Smaller bottle to fit 2-col cards
+  :root { --perfume-img-height: 140px; }
+
+  .fp5-grid {
+    gap: 20px 10px;
+  }
+
+  // Hide notes on mobile — too cramped in 2-col layout, causes horizontal overflow
+  .fp5-notes {
+    display: none;
+  }
+
+  // Simplify float to single centered column when notes hidden
+  .fp5-float {
+    grid-template-columns: 1fr;
+    margin-bottom: -48px;
+    gap: 0;
+
+    .fp5-bottle { justify-content: center; }
+  }
+
+  .fp5-card {
+    padding: 58px 12px 16px;
+    border-radius: 18px;
+    gap: 8px;
+  }
+
+  // Hide cart button text, keep icon only — saves space
+  .fp5-add-btn {
+    button span, [part="button"] span { display: none; }
+    button i, [part="button"] i { font-size: 16px; }
+  }
+
+  // Compact qty input
+  .fp5-qty .s-quantity-input-container {
+    min-width: 64px;
+    height: 32px;
+  }
+}
+
 /* ── Load-more button ── */
 .fp5-load-more-wrap {
   display: flex;

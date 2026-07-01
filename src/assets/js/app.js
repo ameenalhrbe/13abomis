@@ -166,15 +166,32 @@ isElementLoaded(selector){
     const portal = document.getElementById('lux-user-portal');
     if (!btn || !portal) return;
 
+    // Position the fixed portal directly below the button
+    const reposition = () => {
+      const r = btn.getBoundingClientRect();
+      portal.style.top  = (r.bottom + 6) + 'px';
+      // Align portal's right edge with button's right edge (works RTL & LTR)
+      portal.style.right = (window.innerWidth - r.right) + 'px';
+      portal.style.left  = 'auto';
+    };
+
     btn.addEventListener('click', e => {
       e.stopPropagation();
+      const opening = !portal.classList.contains('is-open');
       portal.classList.toggle('is-open');
+      portal.setAttribute('aria-hidden', opening ? 'false' : 'true');
+      if (opening) reposition();
     });
 
     document.addEventListener('click', e => {
-      if (!e.target.closest('.lux-user-wrap')) {
+      if (!btn.contains(e.target) && !portal.contains(e.target)) {
         portal.classList.remove('is-open');
+        portal.setAttribute('aria-hidden', 'true');
       }
+    });
+
+    window.addEventListener('resize', () => {
+      if (portal.classList.contains('is-open')) reposition();
     });
   }
 

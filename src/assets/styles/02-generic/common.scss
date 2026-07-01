@@ -2,6 +2,21 @@ html {
   scroll-behavior: smooth;
 }
 
+// Prevent any block/section from causing horizontal overflow on mobile
+.app-inner,
+main {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+// Contain full-width sliders and banners
+.s-block--hero-slider,
+.s-block--full-bg,
+salla-slider {
+  overflow: hidden;
+  max-width: 100%;
+}
+
 // using salla.document.onClick(...), become effective when all children are none pointer events.
 .cursor-pointer * {
   pointer-events: none;

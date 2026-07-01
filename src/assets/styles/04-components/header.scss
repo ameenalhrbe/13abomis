@@ -306,25 +306,15 @@
   }
 }
 
-// ─── Logged-in user wrap ─────────────────────────────────────────────────
-.lux-user-wrap {
-  position: relative;
-}
-
-// Portal panel — hidden by default, shown on button click via JS
+// User portal — position:fixed, placed by JS below the button.
+// display:none has zero layout impact; JS sets top/right dynamically.
 .lux-user-portal {
-  // visibility+opacity instead of display:none so salla-user-menu initialises on page load
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-8px);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0.2s;
-
-  position: absolute;
-  top: calc(100% + 10px);
-  inset-inline-end: 0;
+  display: none;
+  position: fixed;
   z-index: 300;
+  // top / right set by JS (reposition())
   min-width: 220px;
+  max-width: calc(100vw - 20px);
   background: var(--lux-dark, #0f2a1e);
   border: 1px solid rgba(200, 169, 74, 0.3);
   border-radius: 14px;
@@ -332,13 +322,14 @@
   overflow: hidden;
 
   &.is-open {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateY(0);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0s linear 0s;
+    display: block;
+    animation: lux-portal-in 0.18s ease both;
   }
+}
 
+@keyframes lux-portal-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 // Custom user dropdown menu (replaces salla-user-menu)
@@ -460,12 +451,90 @@
   img { @apply w-auto max-h-12 max-w-[100px] xs:max-w-[170px]; }
 }
 
-// ─── Mobile ────────────────────────────────────────────────────────────────
+// ─── Mobile sticky header — replaces JS fixed-pinned/fixed-header ──────────
+// JS adds fixed-pinned / fixed-header classes on scroll, but on mobile
+// the position:fixed + top:-80px trick causes layout shift and horizontal gaps.
+// We override with CSS sticky which stays in flow and causes no overflow.
 @media (max-width: 1023px) {
   .lux-mainnav__menu { display: none; }
 
-  .lux-mainnav__inner {
-    gap: 0.5rem;
+  .lux-mainnav__inner { gap: 0.5rem; }
+
+  // Make the outer nav element sticky
+  #mainnav,
+  .lux-mainnav {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 50 !important;
+  }
+
+  // Reset all JS-controlled states on the inner wrapper
+  .lux-mainnav .inner,
+  .lux-mainnav.fixed-pinned .inner,
+  .lux-mainnav.fixed-header .inner,
+  .lux-mainnav.animated .inner {
+    position: relative !important;
+    top: auto !important;
+    transform: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+  }
+}
+
+// ─── Phone (< 768px) ───────────────────────────────────────────────────────
+@media (max-width: 767px) {
+
+  // Hide top bar — saves 40px, contacts visible in footer
+  .lux-topbar { display: none; }
+
+  // Compact nav height
+  :root { --lux-nav-h: 60px; }
+
+  // Smaller logo
+  .lux-logo img {
+    max-height: 38px;
+    max-width: 110px;
+  }
+
+  // Smaller action buttons
+  .lux-action-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  // Tighter action row
+  .lux-mainnav__actions { gap: 4px; }
+
+  // Hide divider — saves space between search area and icons
+  .lux-actions-divider { display: none; }
+
+  // Constrain search on tablet range (481-767)
+  .lux-search-wrap {
+    min-width: 100px;
+    max-width: 140px;
+  }
+
+  // Portal: prevent overflow on narrow screens
+  .lux-user-portal {
+    inset-inline-end: -4px;
+    min-width: 200px;
+  }
+
+  // Hamburger slightly smaller
+  .lux-burger {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+// ─── Small phones (< 480px) — search already hidden, max-compact ──────────
+@media (max-width: 479px) {
+  .lux-mainnav__inner { gap: 0.25rem; }
+
+  // Portal fits within screen
+  .lux-user-portal {
+    inset-inline-end: 0;
+    min-width: min(200px, calc(100vw - 20px));
   }
 }
 
