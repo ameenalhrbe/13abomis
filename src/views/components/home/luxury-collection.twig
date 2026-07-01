@@ -8,9 +8,8 @@
 #}
 {% set _title    = component.title | default('كوليكشن النخبة') %}
 {% set _subtitle = component.subtitle %}
-{% set _products = component.products %}
+{% set _products = component.products | default([]) %}
 
-{% if _products | length %}
 <section class="s-block lux-coll container" id="lux-coll-{{ position }}">
 
   {# ── Section Header ── #}
@@ -23,92 +22,101 @@
     {% endif %}
   </div>
 
-  {# ── Products Grid (fp5 card style) ── #}
-  <div class="fp5-grid">
-    {% for product in _products %}
+  {# ── Products Grid ── #}
+  {% if _products | length %}
+    <div class="fp5-grid">
+      {% for product in _products %}
 
-    {% set _tags = product.tags | default([]) %}
-    {% set _half = (_tags | length / 2) | round(0, 'ceil') | number_format(0,'','') %}
+        {% set _tags = product.tags | default([]) %}
+        {% set _half = (_tags | length / 2) | round(0, 'ceil') | number_format(0,'','') %}
 
-    <div class="fp5-item">
+        <div class="fp5-item">
 
-      <div class="fp5-float">
+          <div class="fp5-float">
 
-        <div class="fp5-notes fp5-notes--start">
-          {% for tag in _tags | slice(0, _half) %}
-          <div class="fp5-note">
-            <span class="fp5-note__dot"></span>
-            <span class="fp5-note__text">{{ tag }}</span>
-          </div>
-          {% endfor %}
-        </div>
+            <div class="fp5-notes fp5-notes--start">
+              {% for tag in _tags | slice(0, _half) %}
+              <div class="fp5-note">
+                <span class="fp5-note__dot"></span>
+                <span class="fp5-note__text">{{ tag }}</span>
+              </div>
+              {% endfor %}
+            </div>
 
-        <div class="fp5-bottle">
-          {% if product.is_on_sale and product.discount_percentage %}
-          <span class="fp5-badge">{{ product.discount_percentage }}</span>
-          {% endif %}
-          <a href="{{ product.url }}" aria-label="{{ product.name }}">
-            <img src="{{ product.image.url }}"
-                 alt="{{ product.image.alt | default(product.name) }}"
-                 class="fp5-bottle__img" loading="lazy">
-          </a>
-          <button class="fp5-wish"
-                  onclick="salla.wishlist.toggle({{ product.id }})"
-                  title="{{ 'wishlist.add' | trans }}">
-            <i class="{{ product.is_in_wishlist ? 'sicon-heart-fill text-red-400' : 'sicon-heart' }}"></i>
-          </button>
-        </div>
+            <div class="fp5-bottle">
+              {% if product.is_on_sale and product.discount_percentage %}
+              <span class="fp5-badge">{{ product.discount_percentage }}</span>
+              {% endif %}
+              <a href="{{ product.url }}" aria-label="{{ product.name }}">
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.image.alt | default(product.name) }}"
+                     class="fp5-bottle__img" loading="lazy">
+              </a>
+              <button class="fp5-wish"
+                      onclick="salla.wishlist.toggle({{ product.id }})"
+                      title="{{ 'wishlist.add' | trans }}">
+                <i class="{{ product.is_in_wishlist ? 'sicon-heart-fill text-red-400' : 'sicon-heart' }}"></i>
+              </button>
+            </div>
 
-        <div class="fp5-notes fp5-notes--end">
-          {% for tag in _tags | slice(_half) %}
-          <div class="fp5-note fp5-note--rev">
-            <span class="fp5-note__text">{{ tag }}</span>
-            <span class="fp5-note__dot"></span>
-          </div>
-          {% endfor %}
-        </div>
+            <div class="fp5-notes fp5-notes--end">
+              {% for tag in _tags | slice(_half) %}
+              <div class="fp5-note fp5-note--rev">
+                <span class="fp5-note__text">{{ tag }}</span>
+                <span class="fp5-note__dot"></span>
+              </div>
+              {% endfor %}
+            </div>
 
-      </div>{# /fp5-float #}
+          </div>{# /fp5-float #}
 
-      <div class="fp5-card">
+          <div class="fp5-card">
 
-        <a href="{{ product.url }}" class="fp5-card__name">{{ product.name }}</a>
+            <a href="{{ product.url }}" class="fp5-card__name">{{ product.name }}</a>
 
-        <div class="fp5-card__prices">
-          {% if product.is_on_sale %}
-          <del class="fp5-card__price-old">{{ product.regular_price | money }}</del>
-          {% endif %}
-          <span class="fp5-card__price">{{ product.price | money }}</span>
-        </div>
+            <div class="fp5-card__prices">
+              {% if product.is_on_sale %}
+              <del class="fp5-card__price-old">{{ product.regular_price | money }}</del>
+              {% endif %}
+              <span class="fp5-card__price">{{ product.price | money }}</span>
+            </div>
 
-        <div class="fp5-card__actions">
-          <salla-add-product-button
-            product-id="{{ product.id }}"
-            product-status="{{ product.status }}"
-            product-type="{{ product.type }}"
-            class="fp5-add-btn">
-            <i class="sicon-bag-add"></i>
-            <span>{{ 'cart.add_to_cart' | trans }}</span>
-          </salla-add-product-button>
+            <div class="fp5-card__actions">
+              <salla-add-product-button
+                product-id="{{ product.id }}"
+                product-status="{{ product.status }}"
+                product-type="{{ product.type }}"
+                class="fp5-add-btn">
+                <i class="sicon-bag-add"></i>
+                <span>{{ 'cart.add_to_cart' | trans }}</span>
+              </salla-add-product-button>
 
-          <salla-quantity-input
-            product-id="{{ product.id }}"
-            max="{{ product.max_quantity }}"
-            class="fp5-qty">
-          </salla-quantity-input>
-        </div>
+              <salla-quantity-input
+                product-id="{{ product.id }}"
+                max="{{ product.max_quantity }}"
+                class="fp5-qty">
+              </salla-quantity-input>
+            </div>
 
-        {% if product.rating and product.rating.count > 0 %}
-        <div class="fp5-card__stars">
-          <salla-rating-stars rate="{{ product.rating.stars }}"></salla-rating-stars>
-        </div>
-        {% endif %}
+            {% if product.rating and product.rating.count > 0 %}
+            <div class="fp5-card__stars">
+              <salla-rating-stars rate="{{ product.rating.stars }}"></salla-rating-stars>
+            </div>
+            {% endif %}
 
-      </div>{# /fp5-card #}
+          </div>{# /fp5-card #}
 
-    </div>{# /fp5-item #}
-    {% endfor %}
-  </div>
+        </div>{# /fp5-item #}
+      {% endfor %}
+    </div>
+
+  {% else %}
+    {# Fallback: show all products using native list (until merchant selects products) #}
+    <salla-products-list
+      source="products"
+      product-card-component="custom-salla-product-card"
+      class="fp5-products-list">
+    </salla-products-list>
+  {% endif %}
 
 </section>
-{% endif %}
