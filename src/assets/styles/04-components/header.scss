@@ -306,35 +306,41 @@
   }
 }
 
-// ─── salla-user-menu (logged-in) — Luxury treatment ─────────────────────
-.lux-mainnav {
-  salla-user-menu.lux-action-btn {
-    --user-menu-avatar-size: 34px;
+// ─── Logged-in user wrap ─────────────────────────────────────────────────
+.lux-user-wrap {
+  position: relative;
+}
 
-    // Avatar ring in gold
-    .dropdown__trigger {
-      width: 34px !important;
-      height: 34px !important;
-      border-radius: 50% !important;
-      box-shadow: 0 0 0 2px var(--lux-gold, #c8a94a) !important;
-      transition: box-shadow 0.2s;
-    }
+// The hidden salla-user-menu sits at bottom-end of wrap so dropdown opens below
+.lux-hidden-menu {
+  position: absolute;
+  bottom: 0;
+  inset-inline-end: 0;
+  width: 0;
+  height: 0;
+  overflow: visible;
 
-    &:hover .dropdown__trigger {
-      box-shadow: 0 0 0 2px var(--lux-gold-l, #e2c97e) !important;
-    }
+  // Hide the avatar trigger — only the dropdown panel should show
+  .dropdown__trigger {
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    border: none !important;
   }
 
-  // Dropdown panel — dark lux
-  salla-user-menu .dropdown__menu {
+  // Dropdown panel — dark lux palette
+  .dropdown__menu {
     background: var(--lux-dark, #0f2a1e) !important;
     border: 1px solid rgba(200, 169, 74, 0.3) !important;
     border-radius: 14px !important;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45) !important;
   }
 
-  // Menu items inside user dropdown
-  salla-user-menu .menu-item {
+  // Menu items
+  .menu-item {
     color: rgba(249, 246, 240, 0.85) !important;
 
     i { color: rgba(200, 169, 74, 0.65); transition: color 0.2s; }
@@ -351,6 +357,18 @@
       &:hover { background: rgba(239, 154, 154, 0.1) !important; }
     }
   }
+}
+
+// Gold dot — indicates logged-in status
+.lux-logged-dot {
+  position: absolute;
+  top: 3px;
+  inset-inline-end: 3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lux-gold, #c8a94a);
+  border: 1.5px solid var(--lux-dark, #0f2a1e);
 }
 
 // General menu items (non-user-menu context)
