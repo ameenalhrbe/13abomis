@@ -183,6 +183,17 @@
   }
 }
 
+.lux-action-svg {
+  display: block;
+  flex-shrink: 0;
+  stroke: var(--lux-white);
+  transition: stroke 0.2s;
+
+  .lux-action-btn:hover & {
+    stroke: var(--lux-gold-l, #e2c97e);
+  }
+}
+
 .lux-actions-divider {
   display: inline-block;
   width: 1px;
