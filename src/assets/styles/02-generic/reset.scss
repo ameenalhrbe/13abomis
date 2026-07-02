@@ -16,7 +16,7 @@ html {
   position: relative;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  /* No overflow-x:hidden here — breaks position:fixed (cart drawer, modals) */
 }
 
 body {
