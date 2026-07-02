@@ -1370,9 +1370,11 @@ salla-products-list {
     background: var(--lux-green, #1a4731);
     // Right side rounded, left side square — exactly like the image
     border-radius: 0 32px 32px 0;
-    padding: 4px clamp(20px, 4vw, 48px);
-    display: block;
-    width: 100%;
+    padding: 18px clamp(20px, 4vw, 48px);
+    display: inline-block;
+    width: auto;
+    min-width: 40%;
+    max-width: 70%;
     box-shadow:
       0 6px 32px rgba(0, 0, 0, 0.30),
       inset 0 1px 0 rgba(255, 255, 255, 0.07);
