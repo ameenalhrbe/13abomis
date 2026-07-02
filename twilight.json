@@ -1313,6 +1313,31 @@
             ]
         }
     ],
+        {
+            "key": "f1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+            "title": {
+                "ar": "بنر تسمية فاخر",
+                "en": "Luxury Label Banner"
+            },
+            "icon": "sicon-tag",
+            "path": "home.lux-label",
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص البنر",
+                    "multilanguage": true,
+                    "id": "title",
+                    "value": "عطورات النخبة",
+                    "required": true,
+                    "format": "text",
+                    "placeholder": "أدخل نص البنر هنا...",
+                    "minLength": 1,
+                    "maxLength": 50
+                }
+            ]
+        }
+    ],
     "support_url": "https://example.com",
     "description": {
         "ar": "",

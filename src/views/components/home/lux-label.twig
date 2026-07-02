@@ -1,0 +1,20 @@
+{#
+| Variable        | Type   | Description                     |
+|-----------------|--------|---------------------------------|
+| component.title | string | Banner text editable from dash  |
+#}
+{% set _title = component.title | default('عطورات النخبة') %}
+
+<section class="s-block lux-label-banner">
+  <div class="lux-lb__wrap">
+
+    <div class="lux-lb__bar">
+      <span class="lux-lb__text">{{ _title }}</span>
+    </div>
+
+    <div class="lux-lb__shelf">
+      <span class="lux-lb__pill"></span>
+    </div>
+
+  </div>
+</section>
