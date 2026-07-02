@@ -37,6 +37,20 @@ body{
   }
 }
 
+// Home page — remove white background so sections sit on a clean slate
+body.page-home {
+  background: var(--lux-white, #f9f6f0) !important;
+
+  .s-block {
+    background: transparent !important;
+  }
+
+  .app-inner,
+  main {
+    background: transparent !important;
+  }
+}
+
 .text-start{
 	@apply rtl:text-right ltr:text-left;
 }
