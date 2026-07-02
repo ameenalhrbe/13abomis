@@ -76,8 +76,8 @@
     {% hook head %}
     {% block styles %}{% endblock %}
     <link rel="stylesheet" href="{{ 'app.css' | asset }}">
-    <link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>
-    <link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>
+    {% if theme.font.path %}<link rel="stylesheet" href="{{ theme.font.path|cdn }}"/>{% endif %}
+    {% if 'fonts/sallaicons.css'|cdn %}<link rel="stylesheet" href="{{ 'fonts/sallaicons.css'|cdn }}"/>{% endif %}
     
     <style>
         :root {
