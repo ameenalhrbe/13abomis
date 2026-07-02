@@ -1,9 +1,3 @@
-{#
-| Variable         | Type    | Description                     |
-|------------------|---------|---------------------------------|
-| cart             | object  |                                 |
-| cart.items_count | int     |                                 |
-#}
 <nav class="lux-bottomnav" aria-label="التنقل السفلي">
   <div class="lux-bottomnav__inner">
 
@@ -36,7 +30,7 @@
           <line x1="3" y1="6" x2="21" y2="6"/>
           <path d="M16 10a4 4 0 0 1-8 0"/>
         </svg>
-        <span class="lux-bottomnav__badge" data-cart-count {{ cart.items_count > 0 ? '' : 'hidden' }}>{{ cart.items_count }}</span>
+        <span class="lux-bottomnav__badge" data-cart-count hidden>0</span>
       </span>
       <span class="lux-bottomnav__label">السلة</span>
     </a>
