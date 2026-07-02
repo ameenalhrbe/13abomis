@@ -1068,10 +1068,12 @@ custom-salla-product-card.fp5-item {
     gap: 8px;
   }
 
-  // Hide cart button text, keep icon only — saves space
   .fp5-add-btn {
-    button span, [part="button"] span { display: none; }
-    button i, [part="button"] i { font-size: 16px; }
+    button, [part="button"] {
+      font-size: 0.75rem;
+      padding: 0 10px !important;
+      gap: 4px;
+    }
   }
 
   // Compact qty input
