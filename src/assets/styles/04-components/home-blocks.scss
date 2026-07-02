@@ -1356,7 +1356,7 @@ salla-products-list {
 // Luxury Label Banner  (image: green bar + gold glow shelf)
 // ═══════════════════════════════════════════════════════
 .lux-label-banner {
-  padding: 20px 0 28px;
+  padding: 12px 0 18px;
   overflow: visible;
 }
 
@@ -1370,7 +1370,7 @@ salla-products-list {
     background: var(--lux-green, #1a4731);
     // Right side rounded, left side square — exactly like the image
     border-radius: 0 32px 32px 0;
-    padding: clamp(10px, 2vw, 18px) clamp(24px, 5vw, 64px);
+    padding: 8px clamp(20px, 4vw, 48px);
     display: block;
     width: 100%;
     box-shadow:
@@ -1395,7 +1395,7 @@ salla-products-list {
   &__text {
     display: block;
     text-align: center;
-    font-size: clamp(1.3rem, 3.5vw, 2.4rem);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     font-weight: 800;
     color: #fff;
     letter-spacing: 0.02em;
