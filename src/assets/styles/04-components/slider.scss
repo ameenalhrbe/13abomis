@@ -177,6 +177,140 @@ salla-slider{
   @apply hidden;
 }
 
+// ═══════════════════════════════════════════════════════
+// Luxury Testimonials Section
+// ═══════════════════════════════════════════════════════
+.lux-reviews {
+  background: var(--lux-dark, #0f2a1e);
+  padding: 60px 0 70px;
+
+  // Reuse fp5-head / fp5-title-pill but invert colours for dark bg
+  .fp5-head { margin-bottom: 44px; }
+
+  .fp5-title-pill {
+    background: rgba(200, 169, 74, 0.12);
+    color: var(--lux-gold, #c8a94a);
+    border: 1px solid rgba(200, 169, 74, 0.35);
+  }
+
+  .fp5-title-dot {
+    background: var(--lux-gold, #c8a94a);
+  }
+
+  &__slider-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  &__slider {
+    // Override salla-slider arrow colours for dark bg
+    --s-slider-controls-color: var(--lux-gold, #c8a94a);
+    --s-slider-controls-bg: rgba(200, 169, 74, 0.12);
+    --s-slider-controls-border: rgba(200, 169, 74, 0.35);
+  }
+
+  &__slide {
+    padding: 12px 10px;
+    height: auto;
+  }
+
+  // ── Card ──
+  &__card {
+    background: var(--lux-green, #1a4731);
+    border: 1px solid rgba(200, 169, 74, 0.2);
+    border-radius: 16px;
+    padding: 32px 28px 24px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+
+    &:hover {
+      border-color: rgba(200, 169, 74, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  // ── Decorative quote icon ──
+  &__quote {
+    color: var(--lux-gold, #c8a94a);
+    opacity: 0.55;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  // ── Review text ──
+  &__text {
+    color: var(--lux-white, #f9f6f0);
+    font-size: 0.92rem;
+    line-height: 1.75;
+    flex: 1;
+    opacity: 0.9;
+  }
+
+  // ── Stars ──
+  &__stars {
+    display: flex;
+    gap: 3px;
+    color: var(--lux-gold, #c8a94a);
+    flex-shrink: 0;
+  }
+
+  // ── Separator ──
+  &__sep {
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(200, 169, 74, 0.4) 40%,
+      rgba(200, 169, 74, 0.4) 60%,
+      transparent
+    );
+    flex-shrink: 0;
+  }
+
+  // ── Author row ──
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  &__avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(200, 169, 74, 0.4);
+    flex-shrink: 0;
+    background: rgba(200, 169, 74, 0.08);
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__name {
+    color: var(--lux-gold, #c8a94a);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  // ── Mobile ──
+  @media (max-width: 639px) {
+    padding: 40px 0 50px;
+
+    &__card {
+      padding: 24px 20px 18px;
+    }
+  }
+}
+
 // move to slider component
 model-viewer[style*="width"]:before{
   @apply hidden;
