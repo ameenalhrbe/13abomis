@@ -228,6 +228,29 @@
             "required": false,
             "value": false,
             "selected": false
+        },
+        {
+            "type": "static",
+            "id": "static-line7",
+            "format": "line"
+        },
+        {
+            "type": "static",
+            "format": "title",
+            "id": "static-label8",
+            "value": "خيارات الشريط السفلي (الجوال)",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "icon": "sicon-toggle-off",
+            "label": "إظهار الشريط السفلي في الجوال",
+            "description": "شريط تنقل ثابت أسفل الشاشة (الرئيسية، الأقسام، السلة، المفضلة، حسابي) يظهر على أجهزة الجوال فقط",
+            "id": "bottom_nav_enabled",
+            "format": "switch",
+            "required": false,
+            "value": true,
+            "selected": true
         }
     ],
     "components": [
