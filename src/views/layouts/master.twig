@@ -96,7 +96,6 @@
   {{ theme.settings.get('topnav_is_dark') ? ' topnav-is-dark' : '' }}
   {{ theme.settings.get('sticky_add_to_cart') ? ' is-sticky-product-bar' : '' }}
   {{ is_page('index') ? ' page-home' : '' }}
-  {{ theme.settings.get('bottom_nav_enabled', true) ? ' has-bottom-nav' : '' }}
   ">
   <div class="loader-init"></div>
 <noscript>
@@ -112,9 +111,6 @@
     </main>
     {% component 'footer.footer' %}
 </div>
-{% if theme.settings.get('bottom_nav_enabled', true) %}
-    {% component 'bottom-nav.bottom-nav' %}
-{% endif %}
 {% hook 'body:end' %}
 <script defer src="{{ 'app.js' | asset }}"></script>
 
