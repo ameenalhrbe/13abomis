@@ -112,7 +112,7 @@
     </main>
     {% component 'footer.footer' %}
 </div>
-{% if false %}
+{% if theme.settings.get('bottom_nav_enabled', true) %}
     {% component 'bottom-nav.bottom-nav' %}
 {% endif %}
 {% hook 'body:end' %}
