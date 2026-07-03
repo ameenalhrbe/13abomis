@@ -112,9 +112,7 @@
     </main>
     {% component 'footer.footer' %}
 </div>
-{% if theme.settings.get('bottom_nav_enabled', true) %}
-    {% component 'bottom-nav.bottom-nav' %}
-{% endif %}
+{% component 'bottom-nav.bottom-nav' %}
 {% hook 'body:end' %}
 <script defer src="{{ 'app.js' | asset }}"></script>
 
