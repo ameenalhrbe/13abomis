@@ -22355,6 +22355,99 @@ section.cart-item .menu-item.is-active {
   color: #1a4731;
   color: var(--lux-green, #1a4731);
 }
+.lux-bottomnav {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 200;
+  background: #1a4731;
+  background: var(--lux-green, #1a4731);
+  border-top: 1px solid rgba(200, 169, 74, 0.25);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.25);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.lux-bottomnav__inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  height: 58px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.lux-bottomnav__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  color: rgba(249, 246, 240, 0.65);
+  font-size: 10.5px;
+  line-height: 1;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.lux-bottomnav__item.is-active {
+  color: #c8a94a;
+  color: var(--lux-gold, #c8a94a);
+}
+.lux-bottomnav__item.is-active .lux-bottomnav__icon {
+  transform: translateY(-1px);
+}
+.lux-bottomnav__item:active .lux-bottomnav__icon {
+  transform: scale(0.9);
+}
+.lux-bottomnav__icon-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.lux-bottomnav__icon {
+  width: 21px;
+  height: 21px;
+  stroke: currentColor;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.lux-bottomnav__badge {
+  position: absolute;
+  top: -5px;
+  right: -9px;
+  min-width: 15px;
+  height: 15px;
+  padding: 0 3px;
+  border-radius: 999px;
+  background: #c8a94a;
+  background: var(--lux-gold, #c8a94a);
+  color: #1a1a1a;
+  font-size: 9px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lux-bottomnav__badge[hidden] {
+  display: none;
+}
+.lux-bottomnav__label {
+  white-space: nowrap;
+}
+@media (max-width: 767px) {
+  .lux-bottomnav {
+    display: block;
+  }
+  body.has-bottom-nav {
+    padding-bottom: 58px;
+  }
+  body.has-bottom-nav.is-sticky-product-bar .sticky-product-bar {
+    bottom: 58px;
+  }
+}
 .main-menu > li > a[href*=offer]{
     --tw-text-opacity: 1;
     color: rgba(153, 27, 27, 1);
