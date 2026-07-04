@@ -38,7 +38,8 @@ body{
 }
 
 // Home page — remove white background so sections sit on a clean slate
-body.page-home {
+body.page-home,
+body.page-product {
   background: var(--lux-white, #f9f6f0) !important;
 
   .s-block {

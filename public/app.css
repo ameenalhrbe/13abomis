@@ -19837,15 +19837,19 @@ body [type=text]:focus, body [type=email]:focus, body [type=url]:focus, body [ty
     box-shadow: /*!*/ /*!*/ 0 0 0 0px #fff, var(--tw-ring-shadow), 0 0 rgba(0,0,0,0);
     box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 rgba(0,0,0,0));
 }
-body.page-home {
+body.page-home,
+body.page-product {
   background: #f9f6f0 !important;
   background: var(--lux-white, #f9f6f0) !important;
 }
-body.page-home .s-block {
+body.page-home .s-block,
+body.page-product .s-block {
   background: transparent !important;
 }
 body.page-home .app-inner,
-body.page-home main {
+body.page-home main,
+body.page-product .app-inner,
+body.page-product main {
   background: transparent !important;
 }
 .text-start:where([dir="ltr"], [dir="ltr"] *){
