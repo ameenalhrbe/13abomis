@@ -1441,41 +1441,27 @@ salla-products-list {
   border-top: 1px solid rgba(200, 169, 74, 0.25);
   border-bottom: 1px solid rgba(200, 169, 74, 0.25);
   overflow: hidden;
+  white-space: nowrap;
   padding: 10px 0;
+  direction: ltr;
 
-  &__track {
-    display: flex;
-    direction: ltr;
-    width: max-content;
-    animation: lux-marquee-scroll 22s linear infinite;
-  }
-
-  &:hover &__track {
+  &:hover &__item {
     animation-play-state: paused;
   }
 
-  &__group {
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
-  }
-
   &__item {
-    display: inline-flex;
-    align-items: center;
-    color: var(--lux-gold, #c8a94a);
+    display: inline-block;
+    color: var(--lux-white, #f9f6f0);
     font-weight: 700;
     font-size: 0.95rem;
-    white-space: nowrap;
-    padding-inline-end: 2rem;
-    margin-inline-end: 2rem;
-    border-inline-end: 1px solid rgba(200, 169, 74, 0.3);
+    padding-inline-start: 100%;
+    animation: lux-marquee-scroll 14s linear infinite;
   }
 }
 
 @keyframes lux-marquee-scroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(-100%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
