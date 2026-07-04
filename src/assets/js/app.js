@@ -333,18 +333,9 @@ isElementLoaded(selector){
    * they can be from any page, especially when mega-menu is enabled
    */
   initAddToCart() {
-    const initialCount = salla.storage.get('cart.summary.count') || 0;
-    document.querySelectorAll('[data-cart-count]').forEach(el => {
-      el.innerText = salla.helpers.number(initialCount);
-      el.hidden = !initialCount;
-    });
-
     salla.cart.event.onUpdated(summary => {
       document.querySelectorAll('[data-cart-total]').forEach(el => el.innerHTML = salla.money(summary.total));
-      document.querySelectorAll('[data-cart-count]').forEach(el => {
-        el.innerText = salla.helpers.number(summary.count);
-        el.hidden = !summary.count;
-      });
+      document.querySelectorAll('[data-cart-count]').forEach(el => el.innerText = salla.helpers.number(summary.count));
     });
 
     salla.cart.event.onItemAdded((response, prodId) => {
