@@ -1335,6 +1335,31 @@
                     "maxLength": 50
                 }
             ]
+        },
+        {
+            "key": "a7c4e8b2-3f5d-4a9e-8c1b-6d2f9a0e5c7b",
+            "title": {
+                "ar": "شريط إعلاني متحرك",
+                "en": "Marquee Announcement Bar"
+            },
+            "icon": "sicon-megaphone",
+            "path": "home.marquee",
+            "fields": [
+                {
+                    "type": "string",
+                    "icon": "sicon-format-text-alt",
+                    "label": "نص الشريط المتحرك",
+                    "description": "يظهر متكرراً ومتحركاً أفقياً داخل الشريط",
+                    "multilanguage": true,
+                    "id": "text",
+                    "value": "🌿 عروض طبيعية – الأصالة في كل عبوة!",
+                    "required": true,
+                    "format": "text",
+                    "placeholder": "أدخل نص الشريط هنا...",
+                    "minLength": 1,
+                    "maxLength": 120
+                }
+            ]
         }
     ],
     "support_url": "https://example.com",
