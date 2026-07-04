@@ -8,15 +8,6 @@
 {% extends "layouts.master" %}
 {% block content %}
     {% component home %}
-
-    {# ── All Products (fp5 style) ── #}
-    <section class="s-block fp5-section container">
-      <div class="fp5-head">
-        <div class="fp5-title-pill">جميع المنتجات</div>
-        <div class="fp5-title-dot"></div>
-      </div>
-      <salla-products-list source="products" product-card-component="custom-salla-product-card" class="fp5-products-list"></salla-products-list>
-    </section>
 {% endblock %}
 {% block scripts %}
     <script defer src="{{ 'home.js' | asset }}"></script>
