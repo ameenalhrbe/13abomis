@@ -1437,12 +1437,13 @@ salla-products-list {
 // Marquee Announcement Bar
 // ═══════════════════════════════════════════════════════
 .lux-marquee {
-  background: var(--lux-green, #1a4731);
-  border-top: 1px solid rgba(200, 169, 74, 0.25);
-  border-bottom: 1px solid rgba(200, 169, 74, 0.25);
+  position: relative;
+  background: var(--lux-white, #f9f6f0);
+  border-top: 1px solid rgba(200, 169, 74, 0.35);
+  border-bottom: 1px solid rgba(200, 169, 74, 0.35);
   overflow: hidden;
   white-space: nowrap;
-  padding: 10px 0;
+  height: 2.75rem;
   direction: ltr;
 
   &:hover &__item {
@@ -1450,23 +1451,26 @@ salla-products-list {
   }
 
   &__item {
+    position: absolute;
+    top: 50%;
     display: inline-block;
-    color: var(--lux-white, #f9f6f0);
+    color: var(--lux-green, #1a4731);
     font-weight: 700;
     font-size: 0.95rem;
-    padding-inline-start: 100%;
     animation: lux-marquee-scroll 14s linear infinite;
   }
 }
 
 @keyframes lux-marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
+  from { left: 0%;   transform: translate(-100%, -50%); }
+  to   { left: 100%; transform: translate(0, -50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .lux-marquee__track {
+  .lux-marquee__item {
     animation: none;
+    left: 0;
+    transform: translateY(-50%);
   }
 }
 

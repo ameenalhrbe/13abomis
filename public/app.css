@@ -25394,38 +25394,44 @@ salla-products-list [class*=placeholder] {
   }
 }
 .lux-marquee {
-  background: #1a4731;
-  background: var(--lux-green, #1a4731);
-  border-top: 1px solid rgba(200, 169, 74, 0.25);
-  border-bottom: 1px solid rgba(200, 169, 74, 0.25);
+  position: relative;
+  background: #f9f6f0;
+  background: var(--lux-white, #f9f6f0);
+  border-top: 1px solid rgba(200, 169, 74, 0.35);
+  border-bottom: 1px solid rgba(200, 169, 74, 0.35);
   overflow: hidden;
   white-space: nowrap;
-  padding: 10px 0;
+  height: 2.75rem;
   direction: ltr;
 }
 .lux-marquee:hover .lux-marquee__item {
   animation-play-state: paused;
 }
 .lux-marquee__item {
+  position: absolute;
+  top: 50%;
   display: inline-block;
-  color: #f9f6f0;
-  color: var(--lux-white, #f9f6f0);
+  color: #1a4731;
+  color: var(--lux-green, #1a4731);
   font-weight: 700;
   font-size: 0.95rem;
-  padding-left: 100%;
   animation: lux-marquee-scroll 14s linear infinite;
 }
 @keyframes lux-marquee-scroll {
   from {
-    transform: translateX(0);
+    left: 0%;
+    transform: translate(-100%, -50%);
   }
   to {
-    transform: translateX(-100%);
+    left: 100%;
+    transform: translate(0, -50%);
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .lux-marquee__track {
+  .lux-marquee__item {
     animation: none;
+    left: 0;
+    transform: translateY(-50%);
   }
 }
 .lux-coll__subtitle {
